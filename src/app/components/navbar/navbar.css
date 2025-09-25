@@ -1,0 +1,104 @@
+.navbar {
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 1) !important; /* black with 70% opacity */
+  backdrop-filter: blur(6px); /* optional: adds blur under navbar */
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+/* Blue button for Login */
+.login-blue {
+    background-color: #0d6efd; /* Bootstrap Primary Blue */
+    color: white;              /* Text color */
+}
+
+.login-blue:hover {
+    background-color: #0b5ed7; /* Darker on hover */
+}
+
+/* Green button for Register */
+.register-green {
+    background-color: #198754; /* Bootstrap Green */
+    color: white;
+}
+
+.register-green:hover {
+    background-color: #157347; /* Darker on hover */
+}
+
+
+.custom-mobile-menu .mat-menu-content {
+  background-color: transparent !important;
+  color: black;
+}
+
+.custom-mobile-menu .mat-menu-item {
+  color: black !important;
+  background-color: transparent !important;
+}
+
+.custom-mobile-menu .mat-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+
+
+
+/* General Styles */
+.hero-section {
+  min-height: 60vh;
+  background: linear-gradient(135deg, #2196F3, #21CBF3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.hero-buttons button {
+  min-width: 150px;
+}
+
+.feature-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 40px;   /* adjust size as needed */
+  height: 40px;  /* keep it square for navbar */
+  object-fit: contain;
+}
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #f01b1b; /* light red color */
+  letter-spacing: -0.5px;
+}
+
+
+
+
+
+
+
+

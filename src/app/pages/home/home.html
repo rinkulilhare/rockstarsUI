@@ -1,0 +1,84 @@
+
+
+
+
+<!-- Hero Section -->
+<section id="home" class="hero-section d-flex align-items-center text-center">
+  <div class="container hero-content">
+    <h1 class="hero-title mb-3">The Republic Cup: Where Talent Meets Cricket Glory</h1>
+    <p class="hero-subtitle mb-4">Building a future for our youth, one game at a time.</p>
+    <div class="hero-buttons d-flex justify-content-center gap-3 flex-wrap">
+      <button mat-raised-button color="accent">See The Highlights</button>
+      <button mat-stroked-button color="warn">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="container py-5">
+  <h2 class="mb-4 text-center" style="-webkit-text-fill-color:red;">Welcome to The Rockstar Sport's Foundation</h2>
+  <p class="lead text-center text-muted" style="-webkit-text-fill-color: blueviolet;">
+    We are a community-based organization dedicated to using the power of sports to create opportunities for young people in our villages.
+  </p>
+</section>
+
+<!-- Republic Cup Features
+<section id="events" class="container py-5">
+  <h2 class="text-center mb-4">The Republic Cup: From Auction to the Finals</h2>
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let feature of features">
+      <mat-card class="h-100 text-center">
+        <mat-card-header>
+          <div mat-card-avatar class="feature-avatar bg-primary">
+            <mat-icon class="text-white">{{ feature.icon }}</mat-icon>
+          </div>
+          <mat-card-title>{{ feature.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ feature.description }}</p>
+        </mat-card-content>
+        <mat-card-actions class="justify-content-center">
+          <button mat-button color="primary">{{ feature.buttonText }}</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- Republic Cup Features -->
+<section id="events" class="container py-5">
+  <h2 class="section-title text-center mb-4">The Republic Cup: From Auction to the Finals</h2>
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let feature of features; let i = index">
+      <mat-card class="feature-card h-100 text-center p-3">
+        <mat-card-header>
+          <div mat-card-avatar [ngClass]="feature.avatarClass">
+            <mat-icon class="text-white">{{ feature.icon }}</mat-icon>
+          </div>
+          <mat-card-title class="mt-2">{{ feature.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ feature.description }}</p>
+        </mat-card-content>
+        <mat-card-actions class="justify-content-center">
+          <button mat-raised-button color="primary">{{ feature.buttonText }}</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Call To Action Section -->
+<section class="container py-5 text-center">
+  <h2 class="mb-4">Join Our Sports Revolution</h2>
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <button mat-raised-button color="primary">Support a Player</button>
+    <button mat-raised-button color="accent">Volunteer</button>
+    <button mat-raised-button color="warn">Sponsor an Event</button>
+  </div>
+</section>
+
+
