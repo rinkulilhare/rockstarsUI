@@ -1,8 +1,11 @@
 .navbar {
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  background: rgba(0, 0, 0, 1) !important; /* black with 70% opacity */
-  backdrop-filter: blur(6px); /* optional: adds blur under navbar */
+  /* background: rgba(0, 0, 0, 1) !important; black with 70% opacity */
+  
+  /* background: linear-gradient(135deg, #2196F3, #21CBF3); */
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.6), rgba(33, 203, 243, 0.6));
+  backdrop-filter: blur(9px); /* optional: adds blur under navbar */
   color: whitesmoke;
   display: flex;
   align-items: center;

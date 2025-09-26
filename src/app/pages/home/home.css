@@ -1,0 +1,101 @@
+.hero-section {
+  min-height: 60vh;
+  background: linear-gradient(135deg, #2196F3, #21CBF3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.hero-buttons button {
+  min-width: 150px;
+}
+
+.feature-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 40px;   /* adjust size as needed */
+  height: 40px;  /* keep it square for navbar */
+  object-fit: contain;
+}
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #f01b1b; /* light red color */
+  letter-spacing: -0.5px;
+}
+
+
+/* Feature Card */
+.feature-card {
+  align-items: center;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Avatar Colors */
+.bg-primary { background-color: #1976d2 !important; }
+.bg-success { background-color: #4caf50 !important; }
+.bg-accent { background-color: #ff4081 !important; }
+.bg-warning { background-color: #ff9800 !important; }
+
+/* Card Title */
+mat-card-title {
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Card Content */
+mat-card-content p {
+  align-content: center;
+  color: #f8f8f8;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.section-title {
+  font-size: clamp(1.25rem, 2.5vw, 3rem);
+  font-weight: 700;
+  /* background: linear-gradient(135deg, #667eea, #764ba2, #ff4081); primary + accent gradient */
+  /* webkit-background-clip: text;
+  webkit-text-fill-color: transparent; */
+  -webkit-text-fill-color: cyan;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+
+
+
+
+

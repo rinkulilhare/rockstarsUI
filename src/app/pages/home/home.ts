@@ -10,8 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
-import { Navbar } from '../../components/navbar/navbar';
-import { Footer } from '../../components/footer/footer'; 
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -27,7 +26,7 @@ import { MatInputModule } from '@angular/material/input';
            MatChipsModule,
            MatBadgeModule,
            MatMenuModule,
-           Navbar, Footer,
+          
            ReactiveFormsModule,
            MatFormFieldModule,
            MatInputModule,],

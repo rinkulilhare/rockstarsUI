@@ -6,32 +6,40 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Navbar } from "../../components/navbar/navbar";
-import { Footer } from "../../components/footer/footer";
+import { CommonModule, JsonPipe } from '@angular/common';
+import { UserService } from '../../services/user-service';
+import Swal from 'sweetalert2'
+
 
 
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    Navbar, Footer,],
+    CommonModule,
+    JsonPipe,],
+
+  
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class Register {
   registerForm: FormGroup;
+  
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService:UserService) {
     this.registerForm = this.fb.group(
       {
         userName: ['', [Validators.required, Validators.minLength(4)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required],
+        role: ['PLAYER']  // Default role is PLAYER
       },
       { validators: this.passwordMatchValidator }
     );
@@ -45,8 +53,31 @@ export class Register {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      alert('User Registered Successfully!');
+      const user={
+        userName: this.registerForm.value.userName,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password
+      };
+      const role=this.registerForm.value.role;
+
+    //  add user service call here
+      this.userService.addUser(user, role).subscribe(
+        (data) => {   // success callback
+      console.log("User registered:", data);
+      //alert(data);
+      if(data=="User is already exist !!"){
+        Swal.fire('Warning !!', data, 'warning');
+        return;
+      }else{
+      Swal.fire('Success !!', data, 'success');
+      }
+      },
+      (error) => {  // error callback
+      console.error("Registration failed:", error);
+      //alert('Failed to register user!');
+      Swal.fire('Error !!', 'Failed to register user', 'error');
+    });
+
     }
   }
 
