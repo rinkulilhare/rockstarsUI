@@ -9,6 +9,10 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { CommonModule, JsonPipe } from '@angular/common';
 import { UserService } from '../../services/user-service';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import e from 'express';
+
+
 
 
 
@@ -32,10 +36,10 @@ export class Register {
   registerForm: FormGroup;
   
 
-  constructor(private fb: FormBuilder, private userService:UserService) {
+  constructor(private fb: FormBuilder, private userService:UserService, private router:Router) {
     this.registerForm = this.fb.group(
       {
-        userName: ['', [Validators.required, Validators.minLength(4)]],
+        userName: ['', [Validators.required, Validators.minLength(4),Validators.pattern(/^[a-zA-Z][a-zA-Z0-9.]*$/)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
@@ -69,9 +73,30 @@ export class Register {
         Swal.fire('Warning !!', data, 'warning');
         return;
       }else{
-      Swal.fire('Success !!', data, 'success');
-      }
-      },
+      Swal.fire({
+        title:'Success !!', 
+        text:data, 
+        icon:'success',
+      confirmButtonText:'Go to Login',
+      showCancelButton: true,
+      cancelButtonText: 'Stay Here',
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#3085d6',
+    })
+      .then((result) => { 
+            if(result.isConfirmed){                   
+            this.router.navigate(['/login']);
+        }
+            else{
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/register']);
+      });
+     }
+    });
+  }
+    
+     },
+
       (error) => {  // error callback
       console.error("Registration failed:", error);
       //alert('Failed to register user!');
@@ -79,6 +104,6 @@ export class Register {
     });
 
     }
-  }
-
+ }
 }
+

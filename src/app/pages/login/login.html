@@ -4,7 +4,8 @@
       <mat-card-title class="text-center">Login</mat-card-title>
       <mat-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
+          
+          <p>{{ loginForm.value | json }}</p> 
           <!-- Username -->
           <mat-form-field appearance="outline" class="w-100 mb-3">
             <mat-label>Username</mat-label>

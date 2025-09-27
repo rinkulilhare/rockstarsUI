@@ -18,6 +18,10 @@
           <mat-error [hidden]="!registerForm.get('userName')?.hasError('minlength')">
             Username must be at least 4 characters
           </mat-error>
+
+          <mat-error [hidden]="!registerForm.get('userName')?.hasError('pattern')">
+            Must start with a letter and can contain letters, numbers, and periods(.) only
+          </mat-error>
         </mat-form-field>
 
         <!-- Email -->
