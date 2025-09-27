@@ -26,7 +26,7 @@ import e from 'express';
     MatButtonModule,
     MatCardModule,
     CommonModule,
-    JsonPipe,],
+    ],
 
   
   templateUrl: './register.html',
