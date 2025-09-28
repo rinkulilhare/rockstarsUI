@@ -5,8 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; 
-import { PasswordService } from 'src/app/services/password.service';
-
+import { PasswordService  } from '../../../services/password-service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-forget-password',
@@ -23,7 +23,7 @@ export class ForgetPassword {
 
   forgotForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private passwordService:PasswordService) {
+  constructor(private fb: FormBuilder, private passwordService: PasswordService) {
     this.forgotForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -33,16 +33,23 @@ export class ForgetPassword {
     if (this.forgotForm.valid) {
       const email = this.forgotForm.value.email;
       console.log('Forgot password request for:', email);
-
+      Swal.fire('Processing', 'Please wait...', 'info');
       // Call your API here
-      this.passwordService.forgotPassword(email).subscribe(
+      this.passwordService.forgetPassword(email).subscribe(
         (response:any)=>{
           console.log(response);
-          alert('Password reset link sent to your email.');
+          if(response==='No User Found'){
+            Swal.fire(
+                    'Oops!', response,'warning');  // can be 'success', 'error', 'warning', 'info', 'question'
+                    
+                 
+            
+          }else{ Swal.fire('Success', response, 'success');
+          }
         },
         (error:any)=>{
           console.log(error);
-          alert('Error sending password reset link. Please try again.');
+          Swal.fire('Error', 'Something went wrong or User Not Found', 'error');
         } 
       );
     }
