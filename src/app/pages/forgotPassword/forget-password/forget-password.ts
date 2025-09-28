@@ -33,14 +33,13 @@ export class ForgetPassword {
     if (this.forgotForm.valid) {
       const email = this.forgotForm.value.email;
       console.log('Forgot password request for:', email);
-      Swal.fire('Processing', 'Please wait...', 'info');
+      
       // Call your API here
       this.passwordService.forgetPassword(email).subscribe(
         (response:any)=>{
           console.log(response);
-          if(response==='No User Found'){
-            Swal.fire(
-                    'Oops!', response,'warning');  // can be 'success', 'error', 'warning', 'info', 'question'
+          if(response==='No User Found With This Email'){
+            Swal.fire('Oops!', response,'warning');  // can be 'success', 'error', 'warning', 'info', 'question'
                     
                  
             
