@@ -1,0 +1,54 @@
+.otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* full screen center */
+  background: #f8f9fa;
+}
+
+.otp-card {
+  width: 350px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.otp-inputs input {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  font-size: 22px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.otp-inputs input:focus {
+  border-color: #3f51b5; /* Material Indigo */
+}
+
+.resend {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.resend a {
+  color: #3f51b5;
+  cursor: pointer;
+  text-decoration: underline;
+}

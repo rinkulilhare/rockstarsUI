@@ -1,0 +1,23 @@
+<div class="otp-container">
+  <mat-card class="otp-card">
+    <mat-card-title class="title">Enter OTP</mat-card-title>
+    <mat-card-content>
+      <div class="otp-inputs">
+        <input *ngFor="let ctrl of otpControls; let i = index"
+               [formControl]="ctrl"
+               maxlength="1"
+               id="otp{{i}}"
+               (input)="moveToNext($event, i)" />
+      </div>
+
+      <button mat-raised-button color="primary" (click)="submitOtp()">
+        Submit
+      </button>
+
+      <div class="resend">
+        <span *ngIf="!canResend">Resend OTP in {{timer}}s</span>
+        <a *ngIf="canResend" (click)="resendOtp()">Resend OTP</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -4,6 +4,7 @@ import { App } from './app';
 import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { ForgetPassword } from './pages/forgotPassword/forget-password/forget-password';
+import { Otp } from './pages/otp/otp';
 
 export const routes: Routes = [
    
@@ -29,6 +30,12 @@ export const routes: Routes = [
         path: 'forgot-password',
         component:ForgetPassword,
         pathMatch: 'full'
+    },
+    {
+        path: 'otp',
+        component:Otp,
+        pathMatch: 'full'
+
     }
     
 ];
