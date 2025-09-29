@@ -169,7 +169,7 @@ export class ForgetPassword {
     
 
     // SweetAlert with backend message + login link
-    this.ngxService.stop();
+    
     Swal.fire({
       icon: 'success',
       html: `
@@ -186,6 +186,7 @@ export class ForgetPassword {
             e.preventDefault();
             this.router.navigate(['/login']); // Angular route navigation
             Swal.close(); // optional
+            this.ngxService.stop();
           });
         }
       }
