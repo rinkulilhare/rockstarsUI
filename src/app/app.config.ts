@@ -11,13 +11,19 @@ import { finalize } from 'rxjs/operators';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: SPINNER.threeStrings,
-  fgsSize: 60,
+  fgsSize: 80,
   fgsColor: "red",
+  fgsPosition: "center-center",
   overlayColor: 'rgba(40,40,40,0.3)',
   bgsType: SPINNER.ballSpinClockwise,
   bgsPosition: POSITION.bottomCenter,
   bgsSize: 50,
-  hasProgressBar: true
+  hasProgressBar: true,
+  minTime: 100,
+  maxTime: 5000,
+  logoUrl: 'logo.png',
+  logoPosition: "center-center",
+  logoSize: 60
 };
 
 export const appConfig: ApplicationConfig = {

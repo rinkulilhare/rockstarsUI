@@ -138,7 +138,11 @@ export class ForgetPassword {
         try {
           const res: any = await this.passwordService.verifyOtp(email, otp).toPromise();
           if (res === 'OTP Validated') {
-            return true;
+             const res1: any = await this.passwordService.forgetPassword(email).toPromise();
+              let msg = res1;
+            this.showSuccessWithLoginLink(msg);
+
+            return { verified: true };
           } 
             
           else {
@@ -151,26 +155,51 @@ export class ForgetPassword {
         }
       },
       willClose: () => clearInterval(interval)
-    }).then(async (result) => {
-  if (result.isConfirmed) {
+     });//.then(async (result) => {
+//   if (result.isConfirmed && result.value?.verified) {
    
 
-    // Get backend message properly
-    let msg = '';
-    this.ngxService.start(); 
-    try {
-      const res: any = await this.passwordService.forgetPassword(email).toPromise();
-         msg = res
-    //   console.log(msg);
-    //   console.log(res);
-     } catch {
-         msg = 'exception';
-     }
+//     // Get backend message properly
+//     let msg = '';
+   
+//     try {
+//       const res: any = await this.passwordService.forgetPassword(email).toPromise();
+//          msg = res
+   
+//      } catch {
+//          msg = 'exception';
+//      }
     
 
-    // SweetAlert with backend message + login link
+//     // SweetAlert with backend message + login link
     
-    Swal.fire({
+//     Swal.fire({
+//       icon: 'success',
+//       html: `
+//         <div style="font-size: 18px; font-weight: bold;">OTP Verified Successfully!</div>
+//         <div style="font-size: 14px; margin-top: 5px;">${msg}</div>
+//         <a href="#" id="loginLink" style="display:block; margin-top:15px; color:#3085d6; font-weight:bold;">Go to Login</a>
+//       `,
+//       showConfirmButton: false,
+//       allowOutsideClick: false,
+//       didOpen: () => {
+//         const loginLink = document.getElementById('loginLink');
+//         if (loginLink) {
+//           loginLink.addEventListener('click', (e) => {
+//             e.preventDefault();
+//             this.router.navigate(['/login']); // Angular route navigation
+//             Swal.close(); // optional
+           
+//           });
+//         }
+//       }
+//     });
+//   }
+// });
+  }
+  // SweetAlert with backend message + login link
+   showSuccessWithLoginLink(msg: string) {
+      Swal.fire({
       icon: 'success',
       html: `
         <div style="font-size: 18px; font-weight: bold;">OTP Verified Successfully!</div>
@@ -186,15 +215,19 @@ export class ForgetPassword {
             e.preventDefault();
             this.router.navigate(['/login']); // Angular route navigation
             Swal.close(); // optional
-            this.ngxService.stop();
+           
           });
         }
       }
     });
   }
-});
-  }
+
+
+
+
+
   onReset() {
     this.forgotForm.reset();
   }
+  
 }
