@@ -1,0 +1,35 @@
+<div class="profile-container">
+
+  <!-- Profile Card -->
+  <mat-card class="profile-card">
+    <!-- Profile Photo -->
+    <div class="profile-photo">
+      <img mat-card-avatar [src]="'logo.png'" alt="Profile Photo">
+    </div>
+
+    <!-- Name -->
+    <h2 class="profile-name">{{ "user.name" }}</h2>
+
+    <!-- Details Table -->
+    <table mat-table class="profile-table">
+      <tr>
+        <td class="key">Role</td>
+        <td class="value">{{ "user.role" }}</td>
+      </tr>
+      <tr>
+        <td class="key">Name</td>
+        <td class="value">{{ "user.name" }}</td>
+      </tr>
+      <tr>
+        <td class="key">Email</td>
+        <td class="value">{{ "user.email" }}</td>
+      </tr>
+    </table>
+
+    <!-- Update Button -->
+    <div class="update-button">
+      <button mat-raised-button color="primary" (click)="updateProfile()">Update</button>
+    </div>
+  </mat-card>
+
+</div>

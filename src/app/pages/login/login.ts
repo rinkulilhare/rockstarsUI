@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; 
 import { LoginService } from '../../services/login-service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -26,7 +28,7 @@ import { LoginService } from '../../services/login-service';
 export class Login {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private loginService:LoginService) {
+  constructor(private fb: FormBuilder,private loginService:LoginService, private router:Router) {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
@@ -47,19 +49,48 @@ export class Login {
       
            console.log(response);
            console.log(this.loginForm.value);
-      alert('Login Successful!');
-    },
-    (error)=>{
+           //alert('Login Successful!');
+          this.loginService.isLogin();
+          this.loginService.getCurrentUser().subscribe(
+            (userRoles:any)=>{
+              console.log(userRoles);
+              console.log(userRoles.length);
+               
+              //for multiple roles
+                  userRoles.forEach((userRole:any) => {
+                    console.log(userRole);
+                  
+              if(userRole.profileType==='ADMIN'){
+               //console.log(userRole.profileType);
+               //  window.location.href='/admin';
+                 this.router.navigate(['/admin']);
+
+               
+              }else if(userRole.profileType==='PLAYER'){
+                //console.log(userRole.profileType);
+                //window.location.href='/player';
+                this.router.navigate(['/player']);
+              }else if(userRole.profileType==='FRANCHISE'){
+                //console.log(userRole.profileType);
+                //window.location.href='/franchise';
+                this.router.navigate(['/franchise']);
+              }else{
+                this.loginService.logout();
+              }
+           }) //end of forEach
+
+   },
+   (error)=>{
+     console.log(error);
+     alert('User Profile Not Fetched, try again!');
+   });
+  
+    },(error)=>{
       console.log(error);
       alert('Invalid Credentials, try again!');
-    }
-      );
-  }
-  }
-
-  onForgotPassword() {
-    alert('Redirecting to Get UserId / Reset Password page...');
-    // later: route to reset-password component
+    });
   }
 }
+     
+  }
 

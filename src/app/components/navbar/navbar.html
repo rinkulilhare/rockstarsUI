@@ -20,10 +20,27 @@
     </div> -->
 
     <div class="d-none d-lg-inline d-flex align-items-center">
-    <a href="/login"><button mat-button class="me-2 login-blue text-white">Login</button></a>
-    <a href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>
-    </div>
-
+    @if (login.activeUser>0) {
+  <!-- If user is logged in -->
+   
+    <a href="/logout">
+    <button mat-button class="me-2 logout-red text-white">Logout</button>
+  </a>
+} @else {
+  <!-- If user is NOT logged in -->
+  <a (click)="logout()"
+  href="/login">
+    <button mat-button class="me-2 login-blue text-white">Login</button>
+  </a>
+}
+    @if (login.activeUser>0) {
+     <button mat-button class="me-2 register-green text-white">{{login.getCurrentUser()}}</button>
+    }@else{
+      <a href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>
+    }
+  
+  </div>
+  
     
   
     <!-- Mobile Menu -->

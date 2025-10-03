@@ -16,6 +16,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { NgxUiLoaderModule } from 'ngx-ui-loader'; 
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { MatListModule } from '@angular/material/list';
+
+import { RouterModule } from '@angular/router';
+
 
 
 
@@ -40,6 +46,9 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
            MatFormFieldModule,
            MatInputModule,
            NgxUiLoaderModule,
+            MatSidenavModule,
+            MatListModule,
+            RouterModule
            ],                   
   templateUrl: './app.html',
   styleUrl: './app.css'
