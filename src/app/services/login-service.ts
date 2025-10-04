@@ -1,41 +1,102 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import baseUrl from './helper';
 import { isPlatformBrowser } from '@angular/common';
+import { Observable } from 'rxjs'; // <-- Observable
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   
-  activeUser:number=0;
+ 
   
-  constructor (private http:HttpClient) { }
+  constructor (private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) { }
 
   
 
-  //login user
+  //login user session
+  // public loginUser(user:any){
+  //   return this.http.post(`${baseUrl}/auth/login`,user,{responseType:'text',withCredentials: true})
+        
+  // }
+
+//-------------login user JWT-------------------Start---------------
   public loginUser(user:any){
-    return this.http.post(`${baseUrl}/auth/login`,user,{responseType:'text',withCredentials: true})
+    return this.http.post(`${baseUrl}/auth/login`,user,{responseType:'text'})
         
   }
 
-  //isLogin
-  public isLogin(){
-    //return true if user is logged in
-    //return false if user is not logged in
-    console.log("inside login");
-              this.getCurrentUser().subscribe(
-            (userRoles:any)=>{
-              console.log(userRoles);
-              console.log(userRoles.length);
+  storeToken(token: string) {
+    if(isPlatformBrowser(this.platformId)){
+    localStorage.setItem('jwtToken', token);
+  }
+}
 
-             this.activeUser=userRoles.length;
-    },
-    (error)=>{
-      console.log(error);
-      alert('Invaild');
-    });
+   getToken(): string | null {
+    if(isPlatformBrowser(this.platformId)){
+    return localStorage.getItem('jwtToken');
+  }
+  return null;
+}
+
+  //get userInfo
+  // getUserInfo(): { username: string, roles: string[] } | null {
+  //   const token = this.getToken();
+  //   if (!token) return null;
+
+  //   try {
+  //     const decoded: any = jwt_decode(token);
+  //     return {
+  //       username: decoded.sub,       // "sub" claim from your JWT
+  //       roles: decoded.roles || []   // "roles" claim
+  //     };
+  //   } catch (err) {
+  //     console.error('Invalid JWT', err);
+  //     return null;
+  //   }
+  // }
+  
+  getCurrentUser(): Observable<any> {
+  const token = localStorage.getItem('jwtToken'); // or wherever you store the JWT
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(`${baseUrl}/dashboard/profiles`, { headers });
+}
+
+
+  logout() {
+    if(isPlatformBrowser(this.platformId)){
+    localStorage.removeItem('jwtToken');
+    
+  }
+}
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+//------------------------JWT-----------------END--------- 
+
+  //isLogin
+  // public isLogin(){
+  //   //return true if user is logged in
+  //   //return false if user is not logged in
+  //   console.log("inside login");
+  //             this.getCurrentUser().subscribe(
+  //           (userRoles:any)=>{
+  //             console.log(userRoles);
+  //             console.log(userRoles.length);
+
+            
+  //   },
+  //   (error)=>{
+  //     console.log(error);
+  //     alert('Invaild');
+  //   });
 
 
     
@@ -62,16 +123,15 @@ export class LoginService {
 
   
   //for getting current user profile    
-  public getCurrentUser(){
-    return this.http.get(`${baseUrl}/dashboard/profiles`,{withCredentials: true});
-  }
+  // public getCurrentUser(){
+  //   return this.http.get(`${baseUrl}/dashboard/profiles`,{withCredentials: true});
+  // }
 
-  //logout: remove session
-  public logout(){
-    return this.http.post(`${baseUrl}/auth/logout`,{},{responseType:'text',withCredentials: true}); 
+  // //logout: remove session
+  // public logout(){
+  //   return this.http.post(`${baseUrl}/auth/logout`,{},{responseType:'text',withCredentials: true}); 
  
-  } 
+  // } 
 
-}
-  
+
 

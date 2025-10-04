@@ -12,32 +12,48 @@
       <a href="#events" class="nav-link mx-3">Events</a>
       <a href="#gallery" class="nav-link mx-3">Gallery</a>
       <a href="#contact" class="nav-link mx-3">Contact</a>
+         
+     
     </nav>
 
-    <!-- <div class="d-flex align-items-center">
-      <button mat-button class="me-2 login-green">Login</button>
-      <button mat-button  class="me-2 register-orange">Register</button>
-    </div> -->
+   
 
     <div class="d-none d-lg-inline d-flex align-items-center">
-    @if (login.activeUser>0) {
+
+         
+      <button *ngIf="login.isLoggedIn() && user?.length" 
+                            class="me-2 register-green text-white"
+                             style="margin-bottom: 10px;">
+                             {{user[0]?.profileType}}
+                            </button>
+    
+      <a *ngIf="!login.isLoggedIn()" href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>
+    
+
+
+  
   <!-- If user is logged in -->
-   
-    <a href="/logout">
-    <button mat-button class="me-2 logout-red text-white">Logout</button>
-  </a>
-} @else {
+
+  
+    <button *ngIf="login.isLoggedIn()" color="warn" (click)="logout()" matTooltip="Logout" aria-label="Logout">
+    <mat-icon>logout</mat-icon>
+    </button>
+  
+  
+
   <!-- If user is NOT logged in -->
-  <a (click)="logout()"
-  href="/login">
+  <!-- <a (click)="logout()">
     <button mat-button class="me-2 login-blue text-white">Login</button>
-  </a>
-}
-    @if (login.activeUser>0) {
-     <button mat-button class="me-2 register-green text-white">{{login.getCurrentUser()}}</button>
-    }@else{
-      <a href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>
-    }
+  </a> -->
+
+  <a *ngIf="!login.isLoggedIn()" href="/login"><button mat-button class="me-2 login-blue text-white" >Login</button>
+    </a>
+
+
+  
+
+    
+
   
   </div>
   
@@ -48,12 +64,17 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mobileMenu="matMenu" class="custom-mobile-menu">
-      <button mat-menu-item>Home</button>
-      <button mat-menu-item>About Us</button>
-      <button mat-menu-item>Events</button>
-      <button mat-menu-item>Contact</button>
-      <button mat-menu-item>Login</button>
-      <button mat-menu-item>Register</button>
+      <a href="#contact"><button mat-menu-item >Home</button></a>
+      <!-- <button mat-menu-item>About Us</button> -->
+      <a href="#event"><button mat-menu-item >Events</button></a>
+      <!-- <button mat-menu-item>Contact</button> -->
+      <a href="/login"><button mat-menu-item >Login</button></a>
+      <a href="/register"><button mat-menu-item >Register</button></a>
     </mat-menu>
   </div>
+
+
+
+
+
 </mat-toolbar>

@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-root',
    standalone: true,
@@ -49,7 +50,8 @@ import { RouterModule } from '@angular/router';
             MatSidenavModule,
             MatListModule,
             RouterModule
-           ],                   
+           ],  
+                         
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

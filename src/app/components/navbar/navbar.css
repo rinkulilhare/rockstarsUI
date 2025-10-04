@@ -35,10 +35,24 @@
     background-color: #157347; /* Darker on hover */
 }
 
+.custom-mobile-menu {
+  background:green;
+  color: white;
+  min-width: 200px;
+  border-radius: 12px;
+  padding: 5px 0;
+  backdrop-filter: blur(8px); /* adds a nice glass effect */
+}
+
 
 .custom-mobile-menu .mat-menu-content {
-  background-color: transparent !important;
-  color: black;
+   color: white !important;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 4px 8px;
+  transition: background 0.3s ease;
 }
 
 .custom-mobile-menu .mat-menu-item {
@@ -96,6 +110,12 @@
   font-weight: 600;
   color: #f01b1b; /* light red color */
   letter-spacing: -0.5px;
+}
+
+
+button.mat-icon-button[color="warn"]:hover {
+  background-color: darkred; /* darker shade on hover */
+  color: white;
 }
 
 
