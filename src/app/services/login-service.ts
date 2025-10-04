@@ -30,7 +30,7 @@ export class LoginService {
 
   storeToken(token: string) {
     if(isPlatformBrowser(this.platformId)){
-    localStorage.setItem('jwtToken', token);
+    return localStorage.setItem('jwtToken', token);
   }
 }
 
@@ -40,6 +40,30 @@ export class LoginService {
   }
   return null;
 }
+
+  //set user
+   public setUser(user:any){
+    localStorage.setItem('user',JSON.stringify(user));
+   }
+
+   //get user
+
+   public getUser(){
+    let userStr=localStorage.getItem("user");
+    if(userStr!=null){
+      return JSON.parse(userStr);
+    }else{
+      return "User Not Found";
+    }
+   }
+
+   //get userRoles
+   public getUserRole(){
+    let user=this.getUser();
+    return user[0].profileType;
+   }
+
+
 
   //get userInfo
   // getUserInfo(): { username: string, roles: string[] } | null {
@@ -71,6 +95,10 @@ export class LoginService {
   logout() {
     if(isPlatformBrowser(this.platformId)){
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('user');
+    //window.location.reload();
+    //this.router.navigate(['/login']);
+    
     
   }
 }

@@ -10,7 +10,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   console.log('Headers BEFORE:', req.headers);
 
   if (token) {
-    console.log("inside if"+token);
+    console.log("inside if:: " +token);
     const cloned = req.clone({
       
       setHeaders: {

@@ -107,43 +107,89 @@ export class Login {
       password: this.loginForm.value.password
     };
 
+    //--------------Working Function-----------------
+
+    // this.loginService.loginUser(user).subscribe(
+    //   (token: string) => {
+    //     console.log('JWT:', token);
+    //     // Store token locally
+    //     this.loginService.storeToken(token);
+
+    //     // Fetch user roles after login
+    //     this.loginService.getCurrentUser().subscribe(
+    //       (userRoles:any) => {
+    //         userRoles.forEach((userRole:any) => {
+    //           console.log("Inside getCurrentUser");
+    //           console.log(userRole)
+    //           if (userRole.profileType === 'ADMIN') {
+    //             console.log("userRole:: ADMIN")
+    //             this.router.navigate(['/admin']);
+    //           } else if (userRole.profileType === 'PLAYER') {
+    //             console.log("userRole:: PLAYER")
+    //             this.router.navigate(['/player']);
+    //           } else if (userRole.profileType === 'FRANCHISE') {
+    //             console.log("userRole:: FRANCHISE")
+    //             this.router.navigate(['/franchise']);
+    //           } else {
+    //             this.loginService.logout();
+    //           }
+    //         });
+    //       },
+    //       error => {
+    //         console.error(error);
+    //         alert('User Profile Not Fetched, try again!');
+    //       }
+    //     );
+    //   },
+    //   error => {
+    //     console.error(error);
+    //     alert('Invalid Credentials, try again!');
+    //   }
+    // );
+
+    //-------------------Working Function End---------------
+
+
+    //---------------Experimental Function-------------
+
     this.loginService.loginUser(user).subscribe(
-      (token: string) => {
-        console.log('JWT:', token);
-        // Store token locally
+      (token:any)=>{
+        console.log('login Success');
+        console.log(token);
+
         this.loginService.storeToken(token);
 
-        // Fetch user roles after login
         this.loginService.getCurrentUser().subscribe(
-          (userRoles:any) => {
-            userRoles.forEach((userRole:any) => {
-              console.log("Inside getCurrentUser");
-              console.log(userRole)
-              if (userRole.profileType === 'ADMIN') {
-                console.log("userRole:: ADMIN")
-                this.router.navigate(['/admin']);
-              } else if (userRole.profileType === 'PLAYER') {
-                console.log("userRole:: PLAYER")
-                this.router.navigate(['/player']);
-              } else if (userRole.profileType === 'FRANCHISE') {
-                console.log("userRole:: FRANCHISE")
-                this.router.navigate(['/franchise']);
-              } else {
-                this.loginService.logout();
-              }
-            });
-          },
-          error => {
-            console.error(error);
-            alert('User Profile Not Fetched, try again!');
+          (user:any)=>{
+            this.loginService.setUser(user);
+            console.log(user);
+            // redirect as per role
+            if(this.loginService.getUserRole()== 'ADMIN'){
+              this.router.navigate(['/admin']);
+
+            }else if(this.loginService.getUserRole()== 'PLAYER'){
+              this.router.navigate(['/player']);
+            }else if(this.loginService.getUserRole()== 'FRANCHISE'){
+              this.router.navigate(['/franchise']);
+            }else{
+              this.loginService.logout();
+            }
+            console.log(this.loginService.getUserRole());
+
           }
-        );
-      },
-      error => {
-        console.error(error);
-        alert('Invalid Credentials, try again!');
+        )
       }
-    );
+   
+    )
+
+
+
+
+
+
+
+
+    //--------Experiment END---------------
   }
 }
 

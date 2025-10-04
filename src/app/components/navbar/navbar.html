@@ -12,6 +12,7 @@
       <a href="#events" class="nav-link mx-3">Events</a>
       <a href="#gallery" class="nav-link mx-3">Gallery</a>
       <a href="#contact" class="nav-link mx-3">Contact</a>
+        
          
      
     </nav>
@@ -21,10 +22,10 @@
     <div class="d-none d-lg-inline d-flex align-items-center">
 
          
-      <button *ngIf="login.isLoggedIn() && user?.length" 
+      <button *ngIf="login.isLoggedIn()" 
                             class="me-2 register-green text-white"
                              style="margin-bottom: 10px;">
-                             {{user[0]?.profileType}}
+                             {{login.getUserRole()}}
                             </button>
     
       <a *ngIf="!login.isLoggedIn()" href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>

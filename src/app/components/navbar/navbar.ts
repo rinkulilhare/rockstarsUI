@@ -67,7 +67,9 @@ export class Navbar implements OnInit{
     if(isPlatformBrowser(this.platformId)){
     this.login.logout();
     this.user=[];
+   // window.location.reload();
     this.router.navigate(['/login']);
+    
   }
 }
 
