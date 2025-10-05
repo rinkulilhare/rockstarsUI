@@ -49,7 +49,8 @@ export const routes: Routes = [
         path: 'admin',
         component:AdminDashboard,
        // pathMatch: 'full',
-        //canActivate: [adminGuard]
+        canActivate: [roleGuard],
+        data:{roles:['ADMIN']},
         children: [
             {
                 path: 'profile',
@@ -63,13 +64,15 @@ export const routes: Routes = [
         path: 'player',
         component:PlayerDashboard,
         pathMatch: 'full',
-        //canActivate: [playerGuard]
+         canActivate: [roleGuard],
+        data:{roles:['PLAYER']}
     },
     {
         path: 'franchise',
         component:FranchiseDashboard,
         pathMatch: 'full',
-        //canActivate: [roleGuard('FRANCHISE')]
+         canActivate: [roleGuard],
+        data:{roles:['FRANCHISE']},
     }
     
 ];

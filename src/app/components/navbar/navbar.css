@@ -156,32 +156,30 @@ button.mat-icon-button[color="warn"]:hover {
 .user-role-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 /* Username label */
 .user-name {
-  font-weight: 600;
-  color: white;
-  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1565c0;
+  font-size: 20px;
 }
 
 /* Role select styling */
 .role-select {
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #f1f1f1;
-  color: #333;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  height: 32px;              /* smaller and matches text */
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  outline: none;
 }
 
 .role-select:hover,
 .role-select:focus {
-  background-color: #e0e0e0;
-  outline: none;
+  border-color: #1976d2;
 }
 
 /* Auth buttons container */
@@ -243,6 +241,16 @@ button.mat-icon-button[color="warn"]:hover {
 .register-green:hover {
   background-color: #357a38; /* darker green on hover */
 }
+
+button[mat-icon-button] {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
 
 
 

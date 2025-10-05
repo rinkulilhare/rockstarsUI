@@ -42,9 +42,9 @@
   <!-- If user is logged in -->
 
   
-    <button *ngIf="login.isLoggedIn()" color="warn" (click)="logout()" matTooltip="Logout" aria-label="Logout">
+    <!-- <button *ngIf="login.isLoggedIn()" color="warn" (click)="logout()" matTooltip="Logout" aria-label="Logout">
     <mat-icon>logout</mat-icon>
-    </button>
+    </button> -->
   
   
 
@@ -53,24 +53,29 @@
     <button mat-button class="me-2 login-blue text-white">Login</button>
   </a> -->
 
-  <a *ngIf="!login.isLoggedIn()" href="/login"><button mat-button class="me-2 login-blue text-white" >Login</button>
-    </a>
+  <!-- <a *ngIf="!login.isLoggedIn()" href="/login"><button mat-button class="me-2 login-blue text-white" >Login</button>
+    </a> -->
 
   
   </div>
   
-   <div class="navbar-actions">
+   <div class="navbar-actions" class="d-none d-lg-inline d-flex align-items-center">
   
   <!-- Role dropdown for logged-in users -->
   <div *ngIf="login.isLoggedIn()" class="user-role-container">
     <label for="roleSelect" class="user-name">{{ login.getUserName() }}</label>
-    <select [(ngModel)]="selectedRole" name="roleSelect" (change)="onRoleSubmit()" class="role-select">
+    <select [(ngModel)]="selectedRole" name="roleSelect" (click)="onRoleSubmit()" class="role-select">
       <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
     </select>
-     <button color="warn" (click)="logout()" matTooltip="Logout" aria-label="Logout">
+     <button (click)="logout()" matTooltip="Logout" aria-label="Logout">
     <mat-icon>logout</mat-icon>
     </button>
   </div>
+
+  <!--test box-->
+  
+
+
 
   <!-- Login/Register buttons for guests -->
   <div *ngIf="!login.isLoggedIn()" class="auth-buttons">

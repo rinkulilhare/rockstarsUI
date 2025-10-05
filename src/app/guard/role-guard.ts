@@ -3,35 +3,36 @@ import { inject } from '@angular/core';
 import { LoginService } from '../services/login-service';
 import { map, catchError, of } from 'rxjs';
 
-export const roleGuard: CanActivateFn = (route, state) => {
-  const login = inject(LoginService);
-  const router = inject(Router);
-  console.log("inside role guard");
 
-  return login.getCurrentUser().pipe(
-    map((user: any) => {
-      
-      // Example response: { profileType: 'ADMIN', link: '/TheRockstars/admin/profile' }
-      console.log(user[0]);
-      console.log(user[0].profileType);
-      user.forEach((element: any) => {
-        console.log(element);
-     });
-      // Check if the user has the 'Player' role
-      if (user[0].profileType === 'PLAYER') {
-        console.log(user.profileType);
-        return true;
-      } else {
-        console.log(user.profileType);
-        router.navigate(['/login']);
-        return false;
-      }
-       
-    }),
-    catchError(() => {
-      console.log("error caught in guard");
-      router.navigate(['/login']);
-      return of(false);
-    })
-  );
+export const roleGuard: CanActivateFn = (route) => {
+  const router = inject(Router);
+  const expectedRoles = route.data?.['roles'] as string[];
+  
+   const token = localStorage.getItem('jwtToken');
+
+ 
+
+  if(!token){
+    router.navigate(['/login']);
+    return false;
+  }
+
+  const userRole = JSON.parse(localStorage.getItem('user') || '[]');
+  console.log("userRole:: " +userRole);
+
+  const userRoles = userRole.map((u: any) => u.profileType);
+  console.log("userRoles:: " +userRoles);
+
+  //check matching role
+
+   const hasRole = expectedRoles?.some(r => userRoles.includes(r));
+   console.log("hasRole:: " +hasRole);
+
+
+  if (!hasRole) {
+    router.navigate(['/login']);
+    return false;
+  }
+
+  return true;
 };
