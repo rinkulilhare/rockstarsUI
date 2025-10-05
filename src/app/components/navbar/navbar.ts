@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
+
+import { FormsModule } from '@angular/forms'; // 
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +22,8 @@ import { isPlatformBrowser } from '@angular/common';
     MatMenuItem,
     MatIconModule,
     MatButtonModule,
-  CommonModule],
+  CommonModule,
+  FormsModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
@@ -30,26 +34,48 @@ export class Navbar implements OnInit{
   isLoggedIn: boolean = false;  // <-- Declare login status
 
   username: string | null = null;
+  
   roles: string[] = [];
+  selectedRole: string = '';
 
 
 
   constructor(public login:LoginService,private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object){}
+    @Inject(PLATFORM_ID) private platformId: Object,
+   private cd: ChangeDetectorRef){}
 
     ngOnInit() {
        if (isPlatformBrowser(this.platformId)) {
-    const token = localStorage.getItem('jwtToken');
+        const token = localStorage.getItem('jwtToken');
   
-    this.login.getCurrentUser().subscribe({
-      next: (data) => {
+         this.login.getCurrentUser().subscribe({
+          next: (data) => {
 
-        this.user = data;
-        this.isLoggedIn = !!data;
-        console.log("user:: "+data);
+          this.user = data;
+          this.isLoggedIn = !!data;
+          console.log("user:: "+data);
+
+          //------------------set Role----------------
+
+              this.roles=this.login.getUserRoles();
+              console.log(this.roles);
+              //set default role
+                if(this.roles.length>0){
+                this.selectedRole=this.roles[0]
+                  }
+
+                   // Force Angular to update the view
+                   this.cd.detectChanges();
+
+                console.log("BEFOR CHANGE:: "+this.selectedRole);
+                      this.cd.detectChanges();
+                console.log("AFTER CHANGE:: "+this.selectedRole);
+
+
+
        
-      },
-      error: (err) => {
+       },
+        error: (err) => {
         console.error('Error fetching user:', err);
         this.isLoggedIn = false;
       }
@@ -59,6 +85,10 @@ export class Navbar implements OnInit{
   }else {
       console.log('Running on server, localStorage not available');
     }
+
+
+    
+
   }
 
   
@@ -87,7 +117,25 @@ export class Navbar implements OnInit{
 //     }else{
 //       this.isLoggedIn=false;
 //     }
-  }
+
+        onRoleSubmit() {
+           switch (this.selectedRole) {
+           case 'ADMIN':
+           this.router.navigate(['/admin']);
+            break;
+           case 'PLAYER':
+           this.router.navigate(['/player']);
+             break;
+            case 'FRANCHISE':
+            this.router.navigate(['/franchise']);
+            break;
+            default:
+            console.warn('Unknown role:', this.selectedRole);
+            break;
+          }
+        }
+
+    }
 
 
 

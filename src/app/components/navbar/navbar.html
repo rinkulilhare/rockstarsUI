@@ -22,17 +22,23 @@
     <div class="d-none d-lg-inline d-flex align-items-center">
 
          
-      <button *ngIf="login.isLoggedIn()" 
+      <!-- <button *ngIf="login.isLoggedIn()" 
                             class="me-2 register-green text-white"
                              style="margin-bottom: 10px;">
-                             {{login.getUserRole()}}
-                            </button>
-    
-      <a *ngIf="!login.isLoggedIn()" href="/register"><button mat-button class="me-2 register-green text-white">Register</button></a>
+                              {{login.getUserName()}}
+                             ({{login.getUserRoleNav()}})
+                            
+                            </button> -->
+    <!-- Dropdown for roles -->
     
 
 
-  
+  </div>
+
+
+   <div> 
+   
+
   <!-- If user is logged in -->
 
   
@@ -50,15 +56,39 @@
   <a *ngIf="!login.isLoggedIn()" href="/login"><button mat-button class="me-2 login-blue text-white" >Login</button>
     </a>
 
-
-  
-
-    
-
   
   </div>
   
-    
+   <div class="navbar-actions">
+  
+  <!-- Role dropdown for logged-in users -->
+  <div *ngIf="login.isLoggedIn()" class="user-role-container">
+    <label for="roleSelect" class="user-name">{{ login.getUserName() }}</label>
+    <select [(ngModel)]="selectedRole" name="roleSelect" (change)="onRoleSubmit()" class="role-select">
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+     <button color="warn" (click)="logout()" matTooltip="Logout" aria-label="Logout">
+    <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <!-- Login/Register buttons for guests -->
+  <div *ngIf="!login.isLoggedIn()" class="auth-buttons">
+    <a href="/login">
+      <button mat-button class="login-blue">Login</button>
+    </a>
+    <a href="/register">
+      <button mat-button class="register-green">Register</button>
+    </a>
+  </div>
+
+</div>
+
+  
+
+
+
+
   
     <!-- Mobile Menu -->
     <button mat-icon-button class="d-lg-none" [matMenuTriggerFor]="mobileMenu">

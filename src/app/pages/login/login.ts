@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; 
 import { LoginService } from '../../services/login-service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -153,11 +154,21 @@ export class Login {
     //---------------Experimental Function-------------
 
     this.loginService.loginUser(user).subscribe(
-      (token:any)=>{
+      (res:any)=>{
         console.log('login Success');
+        console.log(res);
+
+        // Split by "::" to get username and token
+      const [username, token] = res.split('::');
+        
+       
+        this.loginService.storeToken(token);
         console.log(token);
 
-        this.loginService.storeToken(token);
+        this.loginService.setUserName(username);
+        console.log(username);
+
+
 
         this.loginService.getCurrentUser().subscribe(
           (user:any)=>{
@@ -166,33 +177,40 @@ export class Login {
             // redirect as per role
             if(this.loginService.getUserRole()== 'ADMIN'){
               this.router.navigate(['/admin']);
+            //  window.location.reload();
 
             }else if(this.loginService.getUserRole()== 'PLAYER'){
               this.router.navigate(['/player']);
+            //  window.location.reload();
             }else if(this.loginService.getUserRole()== 'FRANCHISE'){
               this.router.navigate(['/franchise']);
+             // window.location.reload();
             }else{
               this.loginService.logout();
             }
             console.log(this.loginService.getUserRole());
 
-          }
-        )
+          },  // close inner subscribe next
+        
+       error => {
+            console.error(error);
+            alert('User Profile Not Fetched, try again!');
       }
-   
-    )
+    );  // close inner subscribe
+
+  },   // close outer subscribe next 
+    error => {
+       console.error(error);
+      // alert('Invalid Credentials, try again!');
+       Swal.fire("Login Failed", "Invalid username or password", "warning");
+
+     }
+    );
+        //--------Experiment END---------------
+
+      } // close if(login.form)
+   }  //  close onSubmit 
+} // close login
 
 
-
-
-
-
-
-
-    //--------Experiment END---------------
-  }
-}
-
-
-  }
-
+  

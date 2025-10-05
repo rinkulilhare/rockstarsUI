@@ -12,6 +12,7 @@ export class LoginService {
   
  
   
+
   constructor (private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) { }
 
   
@@ -56,12 +57,63 @@ export class LoginService {
       return "User Not Found";
     }
    }
-
    //get userRoles
    public getUserRole(){
     let user=this.getUser();
-    return user[0].profileType;
+    return user[0].profileType; // e.g. "player"
+    }
+  
+
+   //get userRolesNav
+   public getUserRoleNav(){
+    let user=this.getUserRole();
+    // if (user && user.length > 0) {
+    // let role = user[0].profileType; // e.g. "player"
+    return user.charAt(0).toUpperCase() + user.slice(1).toLowerCase();
+  }
+
+  // get All User
+
+  public getUserRoles(): string[] {
+  const users = this.getUser();
+  const roles: string[] = [];
+
+  if (users && users.length > 0) {
+    for (let i = 0; i < users.length; i++) {
+      const role = users[i].profileType;
+      roles.push(role.charAt(0).toUpperCase() + role.slice(1));
+    }
+  }
+  return roles;
+}
+
+ 
+
+
+   //Set Use Name::
+
+   //set user
+   public setUserName(user:any){
+    localStorage.setItem('userName',JSON.stringify(user));
    }
+
+   //get user
+
+   public getUserNameJSON(){
+    let userStr=localStorage.getItem("userName");
+    if(userStr!=null){
+      return JSON.parse(userStr);
+    }else{
+      return "User Not Found";
+    }
+   }
+
+    //  get userName
+    public getUserName(){
+     let user=this.getUserNameJSON();
+     return user.charAt(0).toUpperCase()+user.slice(1);
+    }
+
 
 
 
@@ -96,6 +148,7 @@ export class LoginService {
     if(isPlatformBrowser(this.platformId)){
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('user');
+    localStorage.removeItem('userName');
     //window.location.reload();
     //this.router.navigate(['/login']);
     

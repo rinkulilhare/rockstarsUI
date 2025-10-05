@@ -119,6 +119,130 @@ button.mat-icon-button[color="warn"]:hover {
 }
 
 
+/* Optional: adjust spacing and size */
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-select-sm {
+  height: 30px;
+  font-size: 0.85rem;
+}
+
+.register-green {
+  background-color: #28a745;
+  color: white;
+}
+
+.login-blue {
+  background-color: #007bff;
+  color: white;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space between elements */
+  margin-right: 1rem; /* right margin in toolbar */
+}
+
+/* Role dropdown container */
+.user-role-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Username label */
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Role select styling */
+.role-select {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #f1f1f1;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.role-select:hover,
+.role-select:focus {
+  background-color: #e0e0e0;
+  outline: none;
+}
+
+/* Auth buttons container */
+.auth-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Login button */
+.login-btn {
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  background-color: #115293;
+}
+
+/* Register button */
+.register-btn {
+  background-color: #4caf50;
+  color: white;
+  font-weight: 600;
+}
+
+.register-btn:hover {
+  background-color: #357a38;
+}
+
+
+/* Login button */
+.login-blue {
+  background-color: #1976d2; /* blue */
+  color: #fff !important; /* strong white */
+  font-weight: 700; /* bold */
+  text-shadow: 0 0 1px rgba(0,0,0,0.3); /* subtle shadow for contrast */
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.login-blue:hover {
+  background-color: #115293; /* darker blue on hover */
+}
+
+/* Register button */
+.register-green {
+  background-color: #4caf50; /* green */
+  color: #fff !important; /* strong white */
+  font-weight: 700; /* bold */
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.register-green:hover {
+  background-color: #357a38; /* darker green on hover */
+}
 
 
 
