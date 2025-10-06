@@ -18,7 +18,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { MatListModule } from '@angular/material/list';
+import { MatDivider, MatListModule } from '@angular/material/list';
 
 import { RouterModule } from '@angular/router';
 
@@ -49,7 +49,8 @@ import { RouterModule } from '@angular/router';
            NgxUiLoaderModule,
             MatSidenavModule,
             MatListModule,
-            RouterModule
+            RouterModule,
+         
            ],  
                          
   templateUrl: './app.html',

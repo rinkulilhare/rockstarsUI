@@ -11,6 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 
 import { FormsModule } from '@angular/forms'; // 
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms'; //
     MatIconModule,
     MatButtonModule,
   CommonModule,
-  FormsModule],
+  FormsModule,
+  MatDividerModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
@@ -47,7 +49,8 @@ export class Navbar implements OnInit{
     ngOnInit() {
        if (isPlatformBrowser(this.platformId)) {
         const token = localStorage.getItem('jwtToken');
-  
+
+        if(token!=null){
          this.login.getCurrentUser().subscribe({
           next: (data) => {
 
@@ -59,6 +62,8 @@ export class Navbar implements OnInit{
 
               this.roles=this.login.getUserRoles();
               console.log(this.roles);
+              //detectChange
+              this.cd.markForCheck(); 
               //set default role
                 if(this.roles.length>0){
                 this.selectedRole=this.roles[0]
@@ -66,12 +71,13 @@ export class Navbar implements OnInit{
 
                    // Force Angular to update the view
                    this.cd.detectChanges();
+                   setTimeout(() => this.cd.detectChanges(), 0);
 
                 console.log("BEFOR CHANGE:: "+this.selectedRole);
                       this.cd.detectChanges();
                 console.log("AFTER CHANGE:: "+this.selectedRole);
 
-
+                
 
        
        },
@@ -79,7 +85,9 @@ export class Navbar implements OnInit{
         console.error('Error fetching user:', err);
         this.isLoggedIn = false;
       }
+    
     });
+  }
     console.log("user:: "+this.user);
      
   }else {

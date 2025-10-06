@@ -100,13 +100,31 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mobileMenu="matMenu" class="custom-mobile-menu">
-      <a href="#contact"><button mat-menu-item >Home</button></a>
+      <a href="#home"><button mat-menu-item >Home</button></a>
       <!-- <button mat-menu-item>About Us</button> -->
       <a href="#event"><button mat-menu-item >Events</button></a>
       <!-- <button mat-menu-item>Contact</button> -->
+       
+      <div *ngIf="!login.isLoggedIn()">
       <a href="/login"><button mat-menu-item >Login</button></a>
+      
       <a href="/register"><button mat-menu-item >Register</button></a>
+      </div>
+
+
+
+      <div *ngIf="login.isLoggedIn()">
+        <label for="roleSelect" >{{ login.getUserName() }}</label><br>
+    <select [(ngModel)]="selectedRole" name="roleSelect" (click)="onRoleSubmit()" >
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select><br>
+     <button (click)="logout()" matTooltip="Logout" aria-label="Logout">
+     Logout
+    </button>
+ 
+      </div>
     </mat-menu>
+
   </div>
 
 

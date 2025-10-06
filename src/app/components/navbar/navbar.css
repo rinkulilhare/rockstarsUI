@@ -252,7 +252,227 @@ button[mat-icon-button] {
 }
 
 
+/* Container for mobile user info */
+.mobile-user-section {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  gap: 8px; /* space between elements */
+}
 
+/* Username styling */
+.mobile-username {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Role dropdown styling */
+.mobile-role-select {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+  background: white;
+}
+
+/* Logout button styling */
+.mobile-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* space between icon and text */
+  justify-content: flex-start;
+}
+
+/* Mobile Menu Trigger Button */
+.mobile-menu-trigger {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-trigger:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+
+/* Register Button Styling */
+.register-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  border-radius: 4px;
+  margin: 4px 8px;
+}
+
+.register-button mat-icon {
+  color: white !important;
+}
+
+.register-button span {
+  color: white !important;
+}
+
+.register-button:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #6a3f8c 100%);
+}
+
+/* Dividers */
+::ng-deep .mat-divider {
+  margin: 8px 0;
+}
+
+.section-divider {
+  margin: 12px 0 !important;
+}
+
+/* User Section */
+.mobile-user-section {
+  padding: 16px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar mat-icon {
+  color: white;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-username {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  display: block;
+}
+
+.user-status {
+  font-size: 12px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+/* Role Selector */
+.role-selector-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.role-icon {
+  color: #667eea;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.mobile-role-select {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+.mobile-role-select:focus {
+  outline: none;
+}
+
+.mobile-role-select option {
+  padding: 8px;
+  background: white;
+}
+
+/* Logout Button */
+.mobile-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: white;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #f44336;
+  font-weight: 600;
+  height: auto;
+  min-height: 40px;
+}
+
+.mobile-logout-btn:hover {
+  background: #fff5f5;
+  box-shadow: 0 2px 6px rgba(244, 67, 54, 0.2);
+}
+
+.mobile-logout-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #f44336;
+}
+
+.mobile-logout-btn span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f44336;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 360px) {
+  ::ng-deep .custom-mobile-menu {
+    min-width: 260px;
+  }
+
+  .mobile-username {
+    font-size: 14px;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-avatar mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
 
 
 
