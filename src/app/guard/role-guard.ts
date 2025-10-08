@@ -1,21 +1,25 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { LoginService } from '../services/login-service';
 import { map, catchError, of } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 
 export const roleGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const expectedRoles = route.data?.['roles'] as string[];
+  const platformId = inject(PLATFORM_ID);
   
    const token = localStorage.getItem('jwtToken');
 
+  
  
 
   if(!token){
     router.navigate(['/login']);
     return false;
   }
+
 
   const userRole = JSON.parse(localStorage.getItem('user') || '[]');
   console.log("userRole:: " +userRole);

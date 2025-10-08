@@ -5,6 +5,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
+import { MatCard } from "@angular/material/card";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 @Component({
@@ -13,8 +16,9 @@ import { MatIcon } from '@angular/material/icon';
     MatToolbar,
     MatListItem,
     MatIcon,
-    MatNavList
-  ],
+    MatNavList,
+    MatCard,
+    MatSidenavModule, MatListModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })

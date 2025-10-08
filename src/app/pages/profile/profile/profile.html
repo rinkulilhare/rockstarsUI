@@ -1,35 +1,79 @@
-<div class="profile-container">
+<mat-card>
+ <h3>Profile</h3>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="container text-center">
+          <!-- <div class="profile-status-container"> -->
+        <!-- <img src="logo.png" alt="" class="profile-photo img"/> -->
+        <!-- <span [ngClass]="status ? 'status-badge active' : 'status-badge inactive'">
+          {{ status ? 'Active' : 'Inactive' }}
+        </span>
+        </div> -->
 
-  <!-- Profile Card -->
-  <mat-card class="profile-card">
-    <!-- Profile Photo -->
-    <div class="profile-photo">
-      <img mat-card-avatar [src]="'logo.png'" alt="Profile Photo">
-    </div>
+        <div class="profile-photo-wrapper">
+         <img src="logo.png" alt="Profile Photo" class="profile-photo" />
+          <span [ngClass]="status ? 'status-badge active' : 'status-badge inactive'">
+            {{ status ? 'Active' : 'Inactive' }}
+            </span>
+            </div>
+        <h3 class="mt20">{{"player_name"}}</h3>
+      </div>
+      <div class="row">
+      <div class="col-md-10 offset-md-1">
 
-    <!-- Name -->
-    <h2 class="profile-name">{{ "user.name" }}</h2>
-
-    <!-- Details Table -->
-    <table mat-table class="profile-table">
-      <tr>
+          <!-- table Details -->
+          
+      <table mat-table class="profile-table">
+        <tbody>
+        <tr>
         <td class="key">Role</td>
-        <td class="value">{{ "user.role" }}</td>
-      </tr>
-      <tr>
-        <td class="key">Name</td>
-        <td class="value">{{ "user.name" }}</td>
-      </tr>
-      <tr>
-        <td class="key">Email</td>
-        <td class="value">{{ "user.email" }}</td>
-      </tr>
-    </table>
+        <td class="value">{{ "player_role" }}</td>
+        </tr>
 
-    <!-- Update Button -->
-    <div class="update-button">
+         <tr>
+        <td class="key">Playing Style</td>
+        <td class="value">{{ "playing_style" }}</td>
+        </tr>
+
+         <tr>
+        <td class="key">Specialization</td>
+        <td class="value">{{ "specialization" }}</td>
+        </tr>
+        
+         <tr>
+        <td class="key">Date of Birth</td>
+        <td class="value">{{ "Date of Birth" }}</td>
+        </tr>
+
+        <tr>
+        <td class="key">Jersery No.</td>
+        <td class="value">{{ "jersery_no" }}</td>
+        </tr>
+
+         <!-- Status row -->
+    <tr>
+      <td class="key">Status</td>
+      <td class="value">
+        <span class="status-badge1" [ngClass]="status ? 'active' : 'inactive'">
+          {{ status ? 'Active' : 'Inactive' }}
+        </span>
+      </td>
+    </tr>
+
+
+       </tbody>
+      </table>
+
+        <!-- Update & Reset Button -->
+      <div class="update-button">
       <button mat-raised-button color="primary" (click)="updateProfile()">Update</button>
-    </div>
-  </mat-card>
+       </div>
 
-</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

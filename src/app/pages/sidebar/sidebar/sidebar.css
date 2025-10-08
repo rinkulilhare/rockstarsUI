@@ -1,3 +1,27 @@
 mat-list-item mat-icon {
   margin-right: 12px;
 }
+
+/* Assuming navbar height is 70px */
+.sidenav {
+  margin-top: 70px;       /* Push down below navbar */
+  height: calc(100vh - 70px); /* Fill remaining vertical space */
+  overflow-y: auto;       /* Scroll if content exceeds height */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* subtle shadow */
+}
+
+/* Optional: style the mat-toolbar inside sidenav */
+.sidenav mat-toolbar {
+  position: sticky;   /* Keeps toolbar visible on scroll */
+  top: 0;             /* Relative to sidenav */
+  z-index: 10;
+}
+
+/* Optional: style list items */
+.sidenav mat-list-item, .sidenav a[mat-list-item] {
+  cursor: pointer;
+}
+
+.sidenav mat-icon {
+  margin-right: 8px; /* spacing between icon and text */
+}
