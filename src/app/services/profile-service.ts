@@ -30,7 +30,7 @@ export class ProfileService {
     'Content-Type': 'application/json'
   });
 
-  return this.http.patch(`${baseUrl}/player/profile`,dto, { headers });
+  return this.http.patch(`${baseUrl}/player/profile`,dto, { headers, responseType: 'text' as 'json' });
   }
 
 
@@ -54,7 +54,7 @@ export class ProfileService {
     'Content-Type': 'application/json'
   });
 
-  return this.http.patch(`${baseUrl}/franchise/profile`,dto, { headers });
+  return this.http.patch(`${baseUrl}/franchise/profile`,dto, { headers, responseType: 'text' as 'json' });
   }
 
 }

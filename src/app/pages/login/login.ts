@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login-service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Navbar } from '../../components/navbar/navbar';
 
 
 
@@ -29,7 +30,7 @@ import Swal from 'sweetalert2';
 export class Login {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private loginService:LoginService, private router:Router) {
+  constructor(private fb: FormBuilder,private loginService:LoginService, private router:Router, private nav:Navbar) {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
@@ -174,6 +175,7 @@ export class Login {
           (user:any)=>{
             this.loginService.setUser(user);
             console.log(user);
+           
             // redirect as per role
             if(this.loginService.getUserRole()== 'ADMIN'){
               this.router.navigate(['/admin']);

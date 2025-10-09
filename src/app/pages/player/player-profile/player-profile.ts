@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
 import {MatCardModule } from '@angular/material/card';
 import { ProfileService } from '../../../services/profile-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-profile',
@@ -12,9 +13,10 @@ import { ProfileService } from '../../../services/profile-service';
 })
 export class PlayerProfile implements OnInit{
 
-   constructor(private profileService:ProfileService){}
+   constructor(private profileService:ProfileService,
+               private router:Router ){}
 
-     status: boolean=false;  // ✅ add this line
+     status: boolean=false;  
      profile:any|null;
     
       ngOnInit() {
@@ -34,6 +36,7 @@ export class PlayerProfile implements OnInit{
   updateProfile() {
     // open dialog or navigate to update form
     console.log('Update profile clicked');
+    this.router.navigate(['player/update-profile']);
   }
 
 

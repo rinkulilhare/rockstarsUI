@@ -127,6 +127,7 @@ export class Navbar implements OnInit{
 //     }
 
         onRoleSubmit() {
+            
            switch (this.selectedRole) {
            case 'ADMIN':
            this.router.navigate(['/admin']);

@@ -15,6 +15,7 @@ import { roleGuard } from './guard/role-guard';
 import { Profile } from './pages/profile/profile/profile';
 import {PlayerProfile} from './pages/player/player-profile/player-profile';
 import { FranchiseProfile } from './pages/franchise/franchise-profile/franchise-profile';
+import { UpdateProfile } from './pages/player/update-profile/update-profile';
 
 export const routes: Routes = [
    
@@ -73,7 +74,12 @@ export const routes: Routes = [
                 path: 'player-profile',
                 component:PlayerProfile,
                // pathMatch: 'full'
+            },
+            { path: 'update-profile', 
+              component:UpdateProfile
             }
+
+
         ]   
     },
     {
