@@ -1,5 +1,5 @@
 <mat-card>
- <h3>Admin</h3>
+ <h3>Profile</h3>
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="container">
@@ -17,7 +17,7 @@
             {{ status ? 'Active' : 'Inactive' }}
             </span>
             </div>
-        <h3 class="mt20">{{"admin_name"}}</h3>
+        <h3 class="mt20">{{"team_name"}}</h3>
       </div>
       <div class="row">
       <div class="col-md-10 offset-md-1">
@@ -27,16 +27,22 @@
       <table mat-table class="profile-table">
         <tbody>
         <tr>
-        <td class="key">Role</td>
-        <td class="value">{{ "Admin" }}</td>
+        <td class="key">Owner Name</td>
+        <td class="value">{{ "Owner name" }}</td>
         </tr>
 
-                        
-        <tr>
-        <td class="key">Email</td>
-        <td class="value">{{ "Email" }}</td>
+         <tr>
+        <td class="key">Incorporation Date</td>
+        <td class="value">{{ "Incorporation_Date" }}</td>
         </tr>
 
+               
+         <tr>
+        <td class="key">Date of Birth</td>
+        <td class="value">{{ "Date of Birth" }}</td>
+        </tr>
+
+       
          <!-- Status row -->
     <tr>
       <td class="key">Status</td>

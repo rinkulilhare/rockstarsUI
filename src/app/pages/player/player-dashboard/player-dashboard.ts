@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Sidebar } from '../../sidebar/sidebar/sidebar';
+import { UserSidebar } from '../user-sidebar/user-sidebar';
+
 
 @Component({
   selector: 'app-player-dashboard',
@@ -15,7 +17,7 @@ import { Sidebar } from '../../sidebar/sidebar/sidebar';
                 MatIconModule,
                 MatButtonModule,
                 RouterModule,
-                Sidebar],
+                UserSidebar],
   templateUrl: './player-dashboard.html',
   styleUrl: './player-dashboard.css'
 })

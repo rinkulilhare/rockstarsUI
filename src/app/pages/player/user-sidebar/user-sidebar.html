@@ -1,0 +1,30 @@
+<mat-card>
+
+<mat-sidenav mode="side" opened class="sidenav">
+  <mat-toolbar color="Warning">Menu</mat-toolbar>
+  
+  <mat-nav-list>
+    <mat-list-item routerLink="/player/home">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </mat-list-item>
+
+    <a mat-list-item href="/player/player-profile">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </a>
+    
+
+    <mat-list-item routerLink="/pyayer/events">
+      <mat-icon>event</mat-icon>
+      <span>Events</span>
+    </mat-list-item>
+
+    <mat-list-item routerLink="/admin/roles">
+      <mat-icon>verified_user</mat-icon>
+      <span>Roles</span>
+    </mat-list-item>
+  </mat-nav-list>
+ </mat-sidenav>
+
+</mat-card>

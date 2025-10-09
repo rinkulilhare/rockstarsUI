@@ -13,6 +13,8 @@ import { adminGuard } from './guard/admin-guard';
 import { playerGuard } from './guard/player-guard';
 import { roleGuard } from './guard/role-guard';
 import { Profile } from './pages/profile/profile/profile';
+import {PlayerProfile} from './pages/player/player-profile/player-profile';
+import { FranchiseProfile } from './pages/franchise/franchise-profile/franchise-profile';
 
 export const routes: Routes = [
    
@@ -68,8 +70,8 @@ export const routes: Routes = [
         data:{roles:['PLAYER']},
         children: [
             {
-                path: 'profile',
-                component:Profile,
+                path: 'player-profile',
+                component:PlayerProfile,
                 pathMatch: 'full'
             }
         ]   
@@ -77,9 +79,16 @@ export const routes: Routes = [
     {
         path: 'franchise',
         component:FranchiseDashboard,
-        pathMatch: 'full',
+        //pathMatch: 'full',
        //  canActivate: [roleGuard],
         data:{roles:['FRANCHISE']},
+        children: [
+            {
+                path: 'franchise-profile',
+                component:FranchiseProfile,
+                pathMatch: 'full'
+            }
+        ]   
     }
     
 ];

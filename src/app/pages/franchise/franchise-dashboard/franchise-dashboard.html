@@ -1,3 +1,19 @@
- <h1 style="margin:0; height:100vh; display:grid; place-items:center; background:#eef;">
-    Hello Franchise
-</h1>
+<div class="dashboard-content">
+  <!-- dashboard content here -->
+</div>
+
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+         <app-franchise-sidebar></app-franchise-sidebar>
+        </div>
+
+        <div class="col-md-10">
+          <router-outlet></router-outlet>
+       
+      </div>
+      </div>
+  </div>
+</div>
+
