@@ -1,4 +1,5 @@
 <mat-card>
+  {{profile|json}}
  <h3>Profile</h3>
   <mat-card-content>
     <div class="bootstrap-wrapper">
@@ -13,11 +14,11 @@
 
         <div class="profile-photo-wrapper">
          <img src="logo.png" alt="Profile Photo" class="profile-photo" />
-          <span [ngClass]="status ? 'status-badge active' : 'status-badge inactive'">
-            {{ status ? 'Active' : 'Inactive' }}
+          <span [ngClass]="profile.status ? 'status-badge active' : 'status-badge inactive'">
+            {{ profile.status ? 'Active' : 'Inactive' }}
             </span>
             </div>
-        <h3 class="mt20">{{"team_name"}}</h3>
+        <h3 class="mt20">{{profile.team_name}}</h3>
       </div>
       <div class="row">
       <div class="col-md-10 offset-md-1">
@@ -28,18 +29,18 @@
         <tbody>
         <tr>
         <td class="key">Owner Name</td>
-        <td class="value">{{ "Owner name" }}</td>
+        <td class="value">{{ profile.owner_name }}</td>
         </tr>
 
          <tr>
         <td class="key">Incorporation Date</td>
-        <td class="value">{{ "Incorporation_Date" }}</td>
+        <td class="value">{{ profile.incorporation_date }}</td>
         </tr>
 
                
          <tr>
         <td class="key">Date of Birth</td>
-        <td class="value">{{ "Date of Birth" }}</td>
+        <td class="value">{{ profile.dob }}</td>
         </tr>
 
        
@@ -47,8 +48,8 @@
     <tr>
       <td class="key">Status</td>
       <td class="value">
-        <span class="status-badge1" [ngClass]="status ? 'active' : 'inactive'">
-          {{ status ? 'Active' : 'Inactive' }}
+        <span class="status-badge1" [ngClass]="profile.status ? 'active' : 'inactive'">
+          {{ profile.status ? 'Active' : 'Inactive' }}
         </span>
       </td>
     </tr>

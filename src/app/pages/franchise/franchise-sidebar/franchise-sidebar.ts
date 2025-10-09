@@ -6,6 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatCard } from "@angular/material/card";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-franchise-sidebar',
@@ -15,7 +16,7 @@ import { MatListModule } from '@angular/material/list';
     MatIcon,
     MatNavList,
     MatCard,
-    MatSidenavModule, MatListModule],
+    MatSidenavModule, MatListModule,RouterModule],
   templateUrl: './franchise-sidebar.html',
   styleUrl: './franchise-sidebar.css'
 })
