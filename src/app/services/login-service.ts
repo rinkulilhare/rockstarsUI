@@ -11,9 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginService {
   
- private _userRole = new BehaviorSubject<string | null>(null);
-  userRole$ = this._userRole.asObservable();
-  
+    
 
   constructor (private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -46,7 +44,7 @@ export class LoginService {
 
   //set user
    public setUser(user:any){
-    this._userRole.next(user);
+   
     localStorage.setItem('user',JSON.stringify(user));
    }
 

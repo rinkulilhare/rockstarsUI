@@ -8,8 +8,6 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login-service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Navbar } from '../../components/navbar/navbar';
-
 
 
 @Component({
@@ -30,7 +28,7 @@ import { Navbar } from '../../components/navbar/navbar';
 export class Login {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private loginService:LoginService, private router:Router, private nav:Navbar) {
+  constructor(private fb: FormBuilder,private loginService:LoginService, private router:Router) {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
@@ -180,13 +178,19 @@ export class Login {
             if(this.loginService.getUserRole()== 'ADMIN'){
               this.router.navigate(['/admin']);
             //  window.location.reload();
+                window.dispatchEvent(new Event('user-updated'));
+
 
             }else if(this.loginService.getUserRole()== 'PLAYER'){
               this.router.navigate(['/player']);
             //  window.location.reload();
+                window.dispatchEvent(new Event('user-updated'));
+
             }else if(this.loginService.getUserRole()== 'FRANCHISE'){
               this.router.navigate(['/franchise']);
              // window.location.reload();
+                window.dispatchEvent(new Event('user-updated'));
+
             }else{
               this.loginService.logout();
             }

@@ -47,13 +47,19 @@ export class Navbar implements OnInit{
    private cd: ChangeDetectorRef){}
 
     ngOnInit() {
-       if (isPlatformBrowser(this.platformId)) {
+      if (isPlatformBrowser(this.platformId)) {
+              //reload Navbar
+        window.addEventListener('user-updated', this.loadUserData.bind(this));
+       }
+      }
+    loadUserData() {
+      if (isPlatformBrowser(this.platformId)) {
         const token = localStorage.getItem('jwtToken');
 
         if(token!=null){
          this.login.getCurrentUser().subscribe({
           next: (data) => {
-
+            console.log("In-current-User")
           this.user = data;
           this.isLoggedIn = !!data;
           console.log("user:: "+data);
