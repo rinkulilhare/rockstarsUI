@@ -17,6 +17,12 @@ import {PlayerProfile} from './pages/player/player-profile/player-profile';
 import { FranchiseProfile } from './pages/franchise/franchise-profile/franchise-profile';
 import { UpdateProfile } from './pages/player/update-profile/update-profile';
 import { UpdateProfileFR } from './pages/franchise/update-profile/update-profile';
+import { FranchiseHome } from './pages/franchise/franchise-home/franchise-home';
+import { FranchiseEvents } from './pages/franchise/franchise-events/franchise-events';
+import { FranchiseRegisteredPlayers } from './pages/franchise/franchise-registered-players/franchise-registered-players';
+import { FranchiseAuction } from './pages/franchise/franchise-auction/franchise-auction';
+import { FranchisePurse } from './pages/franchise/franchise-purse/franchise-purse';
+import { FranchiseTransactions } from './pages/franchise/franchise-transactions/franchise-transactions';
 
 export const routes: Routes = [
    
@@ -92,6 +98,12 @@ export const routes: Routes = [
         canActivate: [roleGuard],
         data:{roles:['FRANCHISE']},
         children: [
+           
+            {
+            path:'home',    
+            component:FranchiseHome
+            },
+
             {
                 path: 'franchise-profile',
                 component:FranchiseProfile,
@@ -99,7 +111,29 @@ export const routes: Routes = [
             },
             { path: 'update-profile', 
               component:UpdateProfileFR
+            },
+            { path: 'event', 
+              component:FranchiseEvents
+            },
+            {
+                path:'registered_players',
+                component:FranchiseRegisteredPlayers
+
+            },
+            {
+                path:'auction',
+                component:FranchiseAuction
+            },
+            {
+                path:'purse',
+                component:FranchisePurse
+            },
+            {
+                path:'transactions',
+                component:FranchiseTransactions
             }
+
+
         ]   
     }
     
