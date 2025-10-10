@@ -16,6 +16,7 @@ import { Profile } from './pages/profile/profile/profile';
 import {PlayerProfile} from './pages/player/player-profile/player-profile';
 import { FranchiseProfile } from './pages/franchise/franchise-profile/franchise-profile';
 import { UpdateProfile } from './pages/player/update-profile/update-profile';
+import { UpdateProfileFR } from './pages/franchise/update-profile/update-profile';
 
 export const routes: Routes = [
    
@@ -79,6 +80,8 @@ export const routes: Routes = [
               component:UpdateProfile
             }
 
+            
+
 
         ]   
     },
@@ -93,6 +96,9 @@ export const routes: Routes = [
                 path: 'franchise-profile',
                 component:FranchiseProfile,
                // pathMatch: 'full'
+            },
+            { path: 'update-profile', 
+              component:UpdateProfileFR
             }
         ]   
     }

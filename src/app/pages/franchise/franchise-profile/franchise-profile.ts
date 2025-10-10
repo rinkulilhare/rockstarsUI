@@ -4,6 +4,7 @@ import { MatCard } from '@angular/material/card';
 import {MatCardModule } from '@angular/material/card';
 import { ProfileService } from '../../../services/profile-service';
 import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-franchise-profile',
@@ -14,7 +15,7 @@ import { error } from 'console';
 export class FranchiseProfile implements OnInit{
 
   
- constructor(private profileService: ProfileService){}
+ constructor(private profileService: ProfileService, private router:Router){}
 
      status: boolean=false;  // ✅ add this line
      profile:any|null;
@@ -33,7 +34,7 @@ export class FranchiseProfile implements OnInit{
     
 
   updateProfile() {
-    // open dialog or navigate to update form
     console.log('Update profile clicked');
+    this.router.navigate(['/franchise/update-profile']);
   }
 }

@@ -1,0 +1,21 @@
+.update-profile-card {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 30px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.update-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}

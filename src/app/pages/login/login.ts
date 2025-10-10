@@ -177,19 +177,19 @@ export class Login {
             // redirect as per role
             if(this.loginService.getUserRole()== 'ADMIN'){
               this.router.navigate(['/admin']);
-            //  window.location.reload();
-                window.dispatchEvent(new Event('user-updated'));
+              window.location.reload();
+               // window.dispatchEvent(new Event('user-updated'));
 
 
             }else if(this.loginService.getUserRole()== 'PLAYER'){
               this.router.navigate(['/player']);
-            //  window.location.reload();
-                window.dispatchEvent(new Event('user-updated'));
+              window.location.reload();
+               // window.dispatchEvent(new Event('user-updated'));
 
             }else if(this.loginService.getUserRole()== 'FRANCHISE'){
               this.router.navigate(['/franchise']);
-             // window.location.reload();
-                window.dispatchEvent(new Event('user-updated'));
+              window.location.reload();
+               // window.dispatchEvent(new Event('user-updated'));
 
             }else{
               this.loginService.logout();
