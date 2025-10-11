@@ -1,0 +1,81 @@
+.update-profile-card {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 30px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.update-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.event-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Align both cards to top */
+  margin-top: 50px;        /* slightly below navbar */
+}
+
+/* Reuse profile-card styles for both table & form */
+.event-card {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  background: linear-gradient(145deg, #ffffff, #f2f4f8);
+  border: 1px solid #e3e7ee;
+}
+
+/* Table card takes full remaining width */
+.event-table-card {
+  flex: 1;
+}
+
+/* Form card fixed width, floats independently */
+.event-form-card {
+  flex: 0 0 400px;
+  position: relative; /* optional floating effect */
+}
+
+/* Slightly lower when hidden */
+.event-form-card .form-toggle-btn {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Button group inside form */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Table styling */
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9fbfd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.event-table tr:nth-child(even) { background: #eef4fb; }
+.event-table tr:hover { background: #dcecff; transition: 0.3s; }
+.event-table td.key { font-weight: 600; color: #1565c0; padding: 12px 10px; text-align: left; }
+.event-table td.value { text-align: right; color: #333; font-weight: 500; padding: 12px 10px; }
+
+/* Status badges reuse profile style */
+.status-badge1.active { background-color: #c8e6c9; color: #2e7d32; border-color: #81c784; }
+.status-badge1.inactive { background-color: #ffcdd2; color: #c62828; border-color: #ef9a9a; }
