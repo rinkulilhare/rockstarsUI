@@ -24,6 +24,13 @@ import { FranchiseAuction } from './pages/franchise/franchise-auction/franchise-
 import { FranchisePurse } from './pages/franchise/franchise-purse/franchise-purse';
 import { FranchiseTransactions } from './pages/franchise/franchise-transactions/franchise-transactions';
 import { PlayerEvents } from './pages/player/player-events/player-events';
+import { PlayerHome } from './pages/player/player-home/player-home';
+import { AdminHome } from './pages/admin/admin-home/admin-home';
+import { AdminEvents } from './pages/admin/admin-events/admin-events';
+import { AdminPlayers } from './pages/admin/admin-players/admin-players';
+import { AdminFranchises } from './pages/admin/admin-franchises/admin-franchises';
+import { AdminUsers } from './pages/admin/admin-users/admin-users';
+import { AdminRoles } from './pages/admin/admin-roles/admin-roles';
 
 export const routes: Routes = [
    
@@ -63,9 +70,39 @@ export const routes: Routes = [
       //  canActivate: [roleGuard],
         data:{roles:['ADMIN']},
         children: [
+             {
+                path: 'home',
+                component:AdminHome,
+               // pathMatch: 'full'
+            },
             {
                 path: 'profile',
                 component:Profile,
+               // pathMatch: 'full'
+            },
+             {
+                path: 'events',
+                component:AdminEvents,
+               // pathMatch: 'full'
+            },
+             {
+                path: 'players',
+                component:AdminPlayers,
+               // pathMatch: 'full'
+            },
+             {
+                path: 'franchises',
+                component:AdminFranchises,
+               // pathMatch: 'full'
+            },
+             {
+                path: 'users',
+                component:AdminUsers,
+               // pathMatch: 'full'
+            },
+             {
+                path: 'roles',
+                component:AdminRoles,
                // pathMatch: 'full'
             }
         ]   
@@ -78,6 +115,12 @@ export const routes: Routes = [
        // canActivate: [roleGuard],
         data:{roles:['PLAYER']},
         children: [
+           {
+                path: 'home',
+                component:PlayerHome,
+               // pathMatch: 'full'
+            },
+           
             {
                 path: 'player-profile',
                 component:PlayerProfile,

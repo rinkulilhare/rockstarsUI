@@ -3,7 +3,7 @@ import { AdminDashboard } from "../../admin/admin-dashboard/admin-dashboard";
 
 @Component({
   selector: 'app-franchise-events',
-  imports: [AdminDashboard],
+  imports: [],
   templateUrl: './franchise-events.html',
   styleUrl: './franchise-events.css'
 })
