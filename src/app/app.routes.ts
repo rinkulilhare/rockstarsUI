@@ -23,6 +23,7 @@ import { FranchiseRegisteredPlayers } from './pages/franchise/franchise-register
 import { FranchiseAuction } from './pages/franchise/franchise-auction/franchise-auction';
 import { FranchisePurse } from './pages/franchise/franchise-purse/franchise-purse';
 import { FranchiseTransactions } from './pages/franchise/franchise-transactions/franchise-transactions';
+import { PlayerEvents } from './pages/player/player-events/player-events';
 
 export const routes: Routes = [
    
@@ -84,7 +85,10 @@ export const routes: Routes = [
             },
             { path: 'update-profile', 
               component:UpdateProfile
-            }
+            },
+            { path: 'events', 
+              component:PlayerEvents
+            },
 
             
 
