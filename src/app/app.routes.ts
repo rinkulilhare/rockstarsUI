@@ -31,6 +31,7 @@ import { AdminPlayers } from './pages/admin/admin-players/admin-players';
 import { AdminFranchises } from './pages/admin/admin-franchises/admin-franchises';
 import { AdminUsers } from './pages/admin/admin-users/admin-users';
 import { AdminRoles } from './pages/admin/admin-roles/admin-roles';
+import { UpdateProfileAdmin } from './pages/admin/update-profile-admin/update-profile-admin';
 
 export const routes: Routes = [
    
@@ -79,6 +80,10 @@ export const routes: Routes = [
                 path: 'profile',
                 component:Profile,
                // pathMatch: 'full'
+            },
+            {
+                path:'update-profile',
+                component:UpdateProfileAdmin
             },
              {
                 path: 'events',

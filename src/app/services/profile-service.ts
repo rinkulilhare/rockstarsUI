@@ -33,7 +33,7 @@ export class ProfileService {
   return this.http.patch(`${baseUrl}/player/profile`,dto, { headers, responseType: 'text' as 'json' });
   }
 
-
+  
    //get franchise profile methods
  
   getFranchiseProfile(): Observable<any> {
@@ -56,5 +56,31 @@ export class ProfileService {
 
   return this.http.patch(`${baseUrl}/franchise/profile`,dto, { headers, responseType: 'text' as 'json' });
   }
+
+  //get user Profile
+
+   getUserProfile(): Observable<any> {
+  const token = localStorage.getItem('jwtToken'); // or wherever you store the JWT
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(`${baseUrl}/user/userDetails`, { headers });
+  }
+
+  //update user
+
+  
+  updateUserProfile(userId:number,user:any): Observable<any> {
+  const token = localStorage.getItem('jwtToken'); // or wherever you store the JWT
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  });
+
+  return this.http.patch(`${baseUrl}/user/updateMail/${userId}`,user, { headers, responseType: 'text' as 'json' });
+  }
+
+
 
 }

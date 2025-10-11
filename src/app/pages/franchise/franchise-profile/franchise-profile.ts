@@ -17,7 +17,7 @@ export class FranchiseProfile implements OnInit{
   
  constructor(private profileService: ProfileService, private router:Router){}
 
-     status: boolean=false;  // ✅ add this line
+     status: boolean=false; 
      profile:any|null;
 
      ngOnInit() {
