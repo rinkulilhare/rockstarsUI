@@ -27,7 +27,7 @@ import Swal from 'sweetalert2';
 export class UpdateProfile {
  
   profileForm: FormGroup;
-
+  showOtherInput = false;
    // Dropdown options
   playerRoles: string[] = [
     'Batter',
@@ -45,6 +45,10 @@ export class UpdateProfile {
     'Batting: Left-Handed (AND/OR) Bowling: Left-Handed'
   ];
 
+  // playerAddress: string[]=['Mahalgaon','Murdara','Dhapewada',
+  //                           'Dawniwara', 'Pipartola','Gondia'
+  // ];
+
 
 
    constructor(private fb: FormBuilder,  private profileService:ProfileService,
@@ -55,7 +59,9 @@ export class UpdateProfile {
       player_role: ['', Validators.required],
       playing_style: ['', Validators.required],
       dob: ['', Validators.required],
-      specialization: ['', Validators.required],          
+      specialization: ['', Validators.required],
+      address:['',Validators.required],
+      mobile_no:['',Validators.required],          
       jersery_no: [''],
       status: []
 
@@ -73,7 +79,9 @@ export class UpdateProfile {
         playing_style:profile.playing_style,
         specialization:profile.specialization,
         dob:profile.dob,
-        jersery_no:profile.jersery_no
+        jersery_no:profile.jersery_no,
+        address:profile.address,
+        mobile_no:profile.mobile_no
       });
       },
       error: (err:any) => console.error('Error fetching profile:', err)
@@ -111,6 +119,13 @@ export class UpdateProfile {
     this.router.navigate(['/player/player-profile']);
   }
 
- } // class Profile Close
+//   onPlayingStyleChange(value: string) {
+//     this.showOtherInput = value === 'other';
 
+//     if (!this.showOtherInput) {
+//       this.profileForm.patchValue({ other_playing_style: '' });
+//     }
+
+//  } 
+}// class Profile Close
 

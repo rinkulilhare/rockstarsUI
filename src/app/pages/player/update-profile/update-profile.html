@@ -47,6 +47,24 @@
       <input matInput type="number" formControlName="jersery_no" />
     </mat-form-field>
 
+     <mat-form-field appearance="outline">
+      <mat-label>Village/City/Town</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+
+      
+    <!-- Show input only if "Other" is selected -->
+<div *ngIf="showOtherInput" class="mt-2">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Other</mat-label>
+    <input matInput formControlName="address" placeholder="Enter your Village/City/Town">
+  </mat-form-field>
+</div>
+
+     <mat-form-field appearance="outline">
+      <mat-label>Mobile No.</mat-label>
+      <input matInput formControlName="mobile_no" />
+    </mat-form-field>
     
     <div class="button-group">
       <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">
