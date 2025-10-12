@@ -42,7 +42,8 @@ interface Event {
 })
 export class AdminEvents implements OnInit{
   showEventForm = false;
-  isEditFrom=false;
+  isEditForm=false;
+  editedEventId: number | null = null;
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
 
@@ -85,26 +86,44 @@ export class AdminEvents implements OnInit{
     this.showEventForm = !this.showEventForm;
     if (!this.showEventForm) {
       this.eventForm.reset();
+      this.isEditForm=false; //edit form
+      this.editedEventId=null; //edit form
+      
     }
   }
 
   // create Event
 
-  onCreateEvent() {
+  onSaveEvent() {
     if (this.eventForm.valid) {
-      const newEvent= {
+      const eventData= {
         event_name:this.eventForm.value.event_name,
         start_date:this.eventForm.value.start_date,
         end_date:this.eventForm.value.end_date
 
       };
+
+      if (this.isEditForm && this.editedEventId) {
+      //  UPDATE EXISTING EVENT
+      this.eventService.updateEvent(this.editedEventId, eventData).subscribe((res) => {
+       if(res=='Event Updated Successfully !!'){
+        Swal.fire('Updated!', res, 'success');
+        this.loadEvents();
+        this.toggleForm();
+       }else{
+        Swal.fire('Oopss!', res, 'warning');
+       }
+
+      });
+    } else{
       
       // call createEvent Service
-      this.eventService.createEvent(newEvent).subscribe((event)=>{
+      this.eventService.createEvent(eventData).subscribe((event)=>{
         console.log("Event:: ",event);
         if(event.startsWith('New Event Created Successfully')){
           Swal.fire('Success !!',event,'success');
           this.loadEvents();
+          this.toggleForm();
         }else{
           Swal.fire('Error !!',event,'error');
         }
@@ -112,21 +131,23 @@ export class AdminEvents implements OnInit{
       });
     }
   }
-
+  }
   onEditEvent(event: any) {
-    // populate form for editing (optional)
-    this.eventForm.setValue({
+    this.isEditForm=true;
+    this.editedEventId=event.event_id;
+    this.showEventForm=true;
+
+    this.eventForm.patchValue({
       event_name: event.event_name,
       start_date: event.start_date,
       end_date: event.end_date,
       event_status: event.event_status
 
     });
-    this.showEventForm = true;
     
 
     // optional: remove old entry to replace on save
-    this.events = this.events.filter(e => e !== event);
+   // this.events = this.events.filter(e => e !== event);
   }
 
 
@@ -150,5 +171,9 @@ export class AdminEvents implements OnInit{
   }
   onCancel(){
     console.log("Cancle clicked");
+    this.eventForm.reset();
+    this.showEventForm=false;
+    this.isEditForm=false;
+    this.editedEventId=null;
   }
 }
