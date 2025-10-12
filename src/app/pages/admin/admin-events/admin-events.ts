@@ -15,6 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar'; // optional, for t
 import { CommonModule } from '@angular/common';
 import { EventService } from '../../../services/event-service';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+
 import Swal from 'sweetalert2';
 
 interface Event {
@@ -49,7 +51,10 @@ export class AdminEvents implements OnInit{
 
   displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
 
-  constructor(private fb: FormBuilder,private eventService:EventService, private router:Router) {
+  constructor(private fb: FormBuilder,
+              private eventService:EventService, 
+              private router:Router,
+              private cdRef:ChangeDetectorRef) {
     this.eventForm = this.fb.group({
       event_name: ['', Validators.required],
       start_date: ['', Validators.required],
@@ -71,6 +76,8 @@ export class AdminEvents implements OnInit{
      
       }))
       .sort((a:any, b:any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
+      // Trigger Another Check after async data Update
+      this.cdRef.detectChanges();
     },
       error: (err:any) => console.error('Error fetching Events:', err)
     });
