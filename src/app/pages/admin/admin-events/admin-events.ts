@@ -42,6 +42,7 @@ interface Event {
 })
 export class AdminEvents implements OnInit{
   showEventForm = false;
+  isEditFrom=false;
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
 
@@ -64,9 +65,11 @@ export class AdminEvents implements OnInit{
         event_name:e.event_name,  
         start_date:e.start_date,
         end_date:e.end_date,
-        event_status:e.event_status       
+        event_status:e.event_status,
+        event_id:e.event_id       
      
-      }));
+      }))
+      .sort((a:any, b:any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
     },
       error: (err:any) => console.error('Error fetching Events:', err)
     });
@@ -110,21 +113,40 @@ export class AdminEvents implements OnInit{
     }
   }
 
-  onEditEvent(event: Event) {
+  onEditEvent(event: any) {
     // populate form for editing (optional)
     this.eventForm.setValue({
-      eventName: event.eventName,
-      startDate: event.startDate,
-      endDate: event.endDate
+      event_name: event.event_name,
+      start_date: event.start_date,
+      end_date: event.end_date,
+      event_status: event.event_status
+
     });
     this.showEventForm = true;
+    
 
     // optional: remove old entry to replace on save
     this.events = this.events.filter(e => e !== event);
   }
 
-  onDeleteEvent(event: Event) {
-    this.events = this.events.filter(e => e !== event);
+
+  // delete event
+  onDeleteEvent(event: any) {
+    console.log(event);
+    const eventId=event.event_id;
+    if (confirm(`Are you sure you want to delete "${event.event_name}"?`)){
+      this.eventService.deleteEvent(eventId).subscribe(
+        (res)=>{
+          Swal.fire('Success !!', res, 'success');
+          this.events=this.events.filter(e=>e.event_id!==eventId);
+        },
+        (err)=>{
+           Swal.fire('Oppsss !!', 'Something Went Wrong', 'warning');
+
+        }
+      );
+    }
+
   }
   onCancel(){
     console.log("Cancle clicked");

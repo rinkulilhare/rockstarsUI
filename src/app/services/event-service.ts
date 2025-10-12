@@ -24,4 +24,13 @@ export class EventService {
     return this.http.get(`${baseUrl}/event/showEvent`,{ headers });
   }
 
+  //delete Event
+  public deleteEvent(eventId:number):Observable<any>{
+    const token=localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${token}`
+    })
+    return this.http.delete(`${baseUrl}/event/delete/${eventId}`,{responseType:'text'})
+  }
+
 }
