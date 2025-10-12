@@ -13,6 +13,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core'; // For datepicker
 import { MatToolbarModule } from '@angular/material/toolbar'; // optional, for top bar
 import { CommonModule } from '@angular/common';
+import { EventService } from '../../../services/event-service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 interface Event {
   eventName: string;
@@ -40,23 +43,40 @@ interface Event {
 export class AdminEvents implements OnInit{
   showEventForm = false;
   eventForm: FormGroup;
-  events: any[] = [
-    { event_name: 'Annual Meetup', start_date: '2025-10-15', end_date: '2025-10-16', active: true },
-    { event_name: 'Tech Conference', start_date: '2025-11-01', end_date: '2025-11-02', active: false },
-    { event_name: 'Holiday Party', start_date: '2025-12-20', end_date: '2025-12-20', active: true }
-  ]; // Replace with service call in real app
+  events: any[] = []; // Events From Table Fetch Here
 
   displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private eventService:EventService, private router:Router) {
     this.eventForm = this.fb.group({
       event_name: ['', Validators.required],
       start_date: ['', Validators.required],
-      end_date: ['', Validators.required]
+      end_date: ['', Validators.required],
+      event_status: []
+       });
+      }
+      // Step 2: Fetch existing event and patch values
+    
+    public loadEvents():void {
+    this.eventService.showEvent().subscribe({
+      next: (event:any) => {
+        this.events=event.map((e:any)=>({
+        event_name:e.event_name,  
+        start_date:e.start_date,
+        end_date:e.end_date,
+        event_status:e.event_status       
+     
+      }));
+    },
+      error: (err:any) => console.error('Error fetching Events:', err)
     });
   }
+  
+  
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadEvents();
+  }
 
   toggleForm() {
     this.showEventForm = !this.showEventForm;
@@ -65,15 +85,28 @@ export class AdminEvents implements OnInit{
     }
   }
 
+  // create Event
+
   onCreateEvent() {
     if (this.eventForm.valid) {
-      const newEvent: Event = {
-        ...this.eventForm.value,
-        active: true
+      const newEvent= {
+        event_name:this.eventForm.value.event_name,
+        start_date:this.eventForm.value.start_date,
+        end_date:this.eventForm.value.end_date
+
       };
-      this.events.push(newEvent);
-      this.eventForm.reset();
-      this.showEventForm = false;
+      
+      // call createEvent Service
+      this.eventService.createEvent(newEvent).subscribe((event)=>{
+        console.log("Event:: ",event);
+        if(event.startsWith('New Event Created Successfully')){
+          Swal.fire('Success !!',event,'success');
+          this.loadEvents();
+        }else{
+          Swal.fire('Error !!',event,'error');
+        }
+        
+      });
     }
   }
 
