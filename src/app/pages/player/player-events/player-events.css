@@ -1,0 +1,125 @@
+.event-container {
+  display: flex;
+  justify-content: center;   /* centers the whole block horizontally */
+  align-items: flex-start;
+  flex-wrap: wrap;           /* enables responsiveness */
+  gap: 25px;
+  margin: 140px auto;
+  padding: 0 25px;           /* small horizontal padding on small screens */
+  max-width: 1300px;         /* prevent stretching too wide */
+  margin-right: 200px;
+}
+
+.event-card {
+  padding: 25px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  background: linear-gradient(145deg, #ffffff, #f4f7fb);
+  border: 1px solid #e3e7ee;
+   transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+}
+
+/* Make the table card centered and compact */
+.event-table-card {
+  flex: 1 1 900px;           /* take up available space up to 700px */
+  max-width: 1000px;          /* keep it narrow */
+  margin: auto;
+}
+
+/* Responsive behavior for smaller devices */
+@media (max-width: 768px) {
+  .event-table-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+  @media (max-width: 992px) {
+  .event-table-card {
+    flex: 1 1 95%;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 600px) {
+  .event-table-card {
+    flex: 1 1 100%;
+    padding: 15px;
+  }
+
+  .event-table {
+    font-size: 13px; /* smaller font for mobile */
+  }
+
+  th, td {
+    padding: 6px 8px !important;
+  }
+}
+
+/* Table styling */
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.event-table th {
+  background-color: #e9f1fa;
+  color: #1a237e;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 15px;
+}
+
+.event-table td {
+  padding: 10px 16px;
+  color: #333;
+  border-top: 1px solid #e0e0e0;
+  font-size: 14.5px;
+}
+
+.event-table tr:hover {
+  background: #f3f8ff;
+  transition: 0.2s;
+}
+
+/* Status badges simplified and compact */
+.status-badge1 {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge1.Live {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge1.Closed {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+/* Compact buttons */
+button[mat-icon-button] {
+  margin: 0 4px;
+}
+
+.register-btn {
+  background-color: #4caf50 !important;  /* Green */
+  color: #ffffff;             /* White text */
+}
+
+.register-btn:hover {
+  background-color: #3431e2 !important;;  /* Darker green on hover */
+}

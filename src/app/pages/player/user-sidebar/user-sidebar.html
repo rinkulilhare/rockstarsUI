@@ -1,10 +1,11 @@
-<mat-card>
+<mat-card >  <!--Added wrapper class -->
+  <!--Added mat-sidenav-container -->
 
 <mat-sidenav mode="side" opened class="sidenav">
   <mat-toolbar color="Warning">Menu</mat-toolbar>
   
   <mat-nav-list>
-    <a mat-list-item routerLink="/player/home">
+    <a mat-list-item routerLink="/player/home" >
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </a>
@@ -15,7 +16,7 @@
     </a>
     
 
-    <mat-list-item routerLink="/player/events">
+    <mat-list-item routerLink="/player/events" >
       <mat-icon>event</mat-icon>
       <span>Events</span>
     </mat-list-item>
@@ -23,5 +24,7 @@
     
   </mat-nav-list>
  </mat-sidenav>
+
+
 
 </mat-card>

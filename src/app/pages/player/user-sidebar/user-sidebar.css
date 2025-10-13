@@ -25,3 +25,39 @@ mat-list-item mat-icon {
 .sidenav mat-icon {
   margin-right: 8px; /* spacing between icon and text */
 }
+
+
+
+/* ⭐ Make sidenav-container full height */
+.sidenav-container {
+  height: 100vh;
+  display: flex;
+}
+
+/*  Content area styling */
+.sidenav-content {
+  flex: 1;
+  background: #f8f9fa;
+}
+
+/* Topbar visible only on small screens */
+.topbar {
+  display: none;
+}
+
+/*  Responsive design: collapse sidenav on smaller screens */
+@media (max-width: 768px) {
+  .sidenav {
+    margin-top: 0; /* remove top margin */
+    height: 100vh;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+  }
+
+  .sidenav-container {
+    flex-direction: column;
+  }
+}
