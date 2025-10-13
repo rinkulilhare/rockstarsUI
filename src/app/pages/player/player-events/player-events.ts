@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core'; // For datepicker
 import { MatToolbarModule } from '@angular/material/toolbar'; // optional, for top bar
 import { CommonModule } from '@angular/common';
 import { EventService } from '../../../services/event-service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ProfileService } from '../../../services/profile-service';
@@ -41,7 +41,8 @@ interface Event {
     MatNativeDateModule,
     MatIconModule,
     MatTableModule,
-    CommonModule],
+    CommonModule,
+    RouterModule],
     
   templateUrl: './player-events.html',
   styleUrl: './player-events.css'
@@ -113,7 +114,13 @@ export class PlayerEvents {
       console.log('Event_id:', event.event_id);
       console.log('Profile_Id:', this.profileId );
       // TODO: Add your registration logic here
-    }
+
+      this.router.navigateByUrl('/player/event-register',{state:{
+        eventId:event.event_id,
+        profileId:this.profileId
+      }
+    });
+  }
 
     onCancel(){
       console.log("Cancle clicked");

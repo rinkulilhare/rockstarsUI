@@ -32,6 +32,7 @@ import { AdminFranchises } from './pages/admin/admin-franchises/admin-franchises
 import { AdminUsers } from './pages/admin/admin-users/admin-users';
 import { AdminRoles } from './pages/admin/admin-roles/admin-roles';
 import { UpdateProfileAdmin } from './pages/admin/update-profile-admin/update-profile-admin';
+import { PlayerRegistration } from './pages/player/player-registration/player-registration';
 
 export const routes: Routes = [
    
@@ -137,6 +138,10 @@ export const routes: Routes = [
             { path: 'events', 
               component:PlayerEvents
             },
+            {
+                path:'event-register',
+                component:PlayerRegistration
+            }
 
             
 
