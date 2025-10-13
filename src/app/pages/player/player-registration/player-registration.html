@@ -10,3 +10,51 @@
 </form>
 
 </div>
+
+<div class="main-container">
+  <div class="content">
+    <mat-card class="registration-card">
+      <h3>Event Registration</h3>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <!-- Base Price Dropdown -->
+        <mat-form-field appearance="outline" class="w-100 mb-2">
+          <mat-label>Base Price</mat-label>
+          <mat-select formControlName="base_price">
+            <mat-option *ngFor="let price of basePrices" [value]="price">
+              {{ price }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Availability Slider -->
+        <!-- <div class="mb-3">
+          <mat-label>Availability (%)</mat-label>
+          <mat-slider
+            formControlName="availability"
+            min="0"
+            max="100"
+            step="5"
+            thumbLabel
+            tickInterval="5">
+          </mat-slider>
+          <div class="availability-value">{{ registerForm.value.availability }}%</div>
+        </div> -->
+
+        <!-- Available to be Retained Toggle -->
+        <mat-slide-toggle formControlName="available_to_be_retained" color="primary">
+          Available to be Retained
+        </mat-slide-toggle>
+
+        <!-- Submit Button -->
+        <div class="mt-3 text-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+            Register
+          </button>
+        </div>
+
+      </form>
+    </mat-card>
+  </div>
+</div>
