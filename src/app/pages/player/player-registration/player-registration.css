@@ -72,6 +72,14 @@ h2 {
   text-align: center;
 }
 
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+
 
 /* Responsive */
 @media (max-width: 480px) {
@@ -96,15 +104,9 @@ h2 {
 
 .button-group {
   display: flex;
-  gap: 12px;       /* space between buttons */
-  justify-content: center; /* center the buttons horizontally */
+  justify-content: center;
+  gap: 10px;
   margin-top: 20px;
 }
-
-.button-group button {
-  min-width: 120px; /* optional: make buttons consistent width */
-}
-
-
 
 }
