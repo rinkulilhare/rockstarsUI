@@ -1,17 +1,110 @@
-mat-card {
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-}
-
-.main-container {
+/* Center the entire section vertically & horizontally */
+.event-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full viewport height */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
 }
-.content {
-  flex: 1; /* takes available space between header and footer */
+
+/* Swap visual styles of H1 and H2 */
+.event-container h1 {
+  font-size: 1.4rem;      /* smaller, like H2 */
+  color:  #2c3e50;         /* grayish color, original H2 color */
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.event-container h2 {
+  font-size: 1.8rem;      /* bigger, like H1 */
+  color:     #607d8b;    /* dark color, original H1 color */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+/* Compact Card-like Form */
+.event-form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
   display: flex;
-  justify-content: center; /* horizontally center */
-  align-items: center;     /* vertically center */
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Form Field Styling */
+.full-width {
+  width: 100%;
+}
+
+/* Progress Section */
+.progress-section {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.progress-section p {
+  margin-top: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #607d8b;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+  .event-form {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+ 
+/* Add in component CSS */
+.mat-progress-bar.success .mat-progress-bar-fill::after {
+  background-color: #4caf50 !important; /* green */
+}
+
+.mat-progress-bar.accent .mat-progress-bar-fill::after {
+  background-color: orange !important; /* orange */
+}
+
+.mat-progress-bar.warn .mat-progress-bar-fill::after {
+  background-color: red !important; /* red */
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;       /* space between buttons */
+  justify-content: center; /* center the buttons horizontally */
+  margin-top: 20px;
+}
+
+.button-group button {
+  min-width: 120px; /* optional: make buttons consistent width */
+}
+
+
+
 }

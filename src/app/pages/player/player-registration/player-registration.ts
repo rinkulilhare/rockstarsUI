@@ -10,7 +10,10 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { CommonModule, JsonPipe } from '@angular/common';
 import Swal from 'sweetalert2'
 import e from 'express';
-import { MatOption } from '@angular/material/select';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @Component({
   selector: 'app-player-registration',
@@ -20,36 +23,45 @@ import { MatOption } from '@angular/material/select';
     MatButtonModule,
     MatCardModule,
     CommonModule,
-    MatOption],
+    MatOption, 
+    MatSelect, MatProgressBarModule,
+    MatSliderModule],
   templateUrl: './player-registration.html',
   styleUrl: './player-registration.css'
 })
 export class PlayerRegistration {
   eventId!: number;
   profileId!: number;
+  eventName!: string;
   registerForm: FormGroup;
 
   // Predefined Base Price options
   basePrices: number[] = [500,1000,1200,1500,1700,2000,2200,2500,3000,4000,5000,];
+  availabilityOptions = [0, 25, 50, 75, 100];
+  availble_to_be_retained:string[] = ["Yes", "No", "N.A. (FirstTimeEnroll)", "N.A. (UnSold)"    ];
+
+  progressColor: 'primary' | 'accent' | 'warn' = 'primary';
+  progressClass:string='warn'
 
   constructor(private fb: FormBuilder, private router: Router) {
 
     this.registerForm = this.fb.group(
       {
-      base_price: [this.basePrices[0], Validators.required],
-      availability: [0, Validators.required],
-      available_to_be_retained: [true], // default toggle ON
+      base_price: ['', Validators.required],
+      availability: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+      availble_to_be_retained: ['',Validators.required], 
       },
       
     );
 
 
     const nav = this.router.getCurrentNavigation();
-    const state = nav?.extras.state as { eventId: number; profileId: number };
+    const state = nav?.extras.state as { eventId: number; eventName:string; profileId: number };
 
     if (state) {
       this.eventId = state.eventId;
       this.profileId = state.profileId;
+      this.eventName = state.eventName;
       console.log('Event ID:', this.eventId);
       console.log('Profile ID:', this.profileId);
     } else {
@@ -58,14 +70,25 @@ export class PlayerRegistration {
     }
   }
 
+
+   public checkAvailability() {
+    console.log("checkAvailability")
+  const value = this.registerForm.get('availability')?.value || 0;
+
+    if (value <= 25) this.progressClass = 'warn';      // red
+   else if (value <= 50) this.progressClass = 'accent'; // orange
+   else if (value <= 75) this.progressClass = 'primary'; // blue-ish (can style later)
+    else this.progressClass = 'success';               // green (custom class needed)
+  }
+
    onSubmit() {
       if (this.registerForm.valid) {
-        const user={
-          userName: this.registerForm.value.userName,
-          email: this.registerForm.value.email,
-          password: this.registerForm.value.password
+        const res={
+          base_price: this.registerForm.value.base_price,
+          availble_to_be_retained: this.registerForm.value.availble_to_be_retained,
+          availability: this.registerForm.value.availability
         };
-        const role=this.registerForm.value.role;
+        console.log(res)
   
     //   //  add user service call here
     //    // this.userService.addUser(user, role).subscribe(
@@ -108,5 +131,12 @@ export class PlayerRegistration {
   
       }
    }
+
+   onCancel(){
+    console.log("Clicked Cancle");
+    this.router.navigate(['/player/events']);
+   }
+
+  
 
 }

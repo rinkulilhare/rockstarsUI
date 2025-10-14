@@ -117,6 +117,7 @@ export class PlayerEvents {
 
       this.router.navigateByUrl('/player/event-register',{state:{
         eventId:event.event_id,
+        eventName:event.event_name,
         profileId:this.profileId
       }
     });
