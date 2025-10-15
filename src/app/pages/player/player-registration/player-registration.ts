@@ -13,6 +13,7 @@ import e from 'express';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { EventRegistrationService } from '../../../services/event-registration-service';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class PlayerRegistration {
   progressColor: 'primary' | 'accent' | 'warn' = 'primary';
   progressClass:string='warn'
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private eventRegistrationService:EventRegistrationService) {
 
     this.registerForm = this.fb.group(
       {
@@ -81,53 +82,55 @@ export class PlayerRegistration {
     else this.progressClass = 'success';               // green (custom class needed)
   }
 
+
+    //Event-Registration Save
    onSubmit() {
       if (this.registerForm.valid) {
-        const res={
+        const playerEventRegDetails={
           base_price: this.registerForm.value.base_price,
           availble_to_be_retained: this.registerForm.value.availble_to_be_retained,
           availability: this.registerForm.value.availability
         };
-        console.log(res)
+        console.log(playerEventRegDetails)
   
-    //   //  add user service call here
-    //    // this.userService.addUser(user, role).subscribe(
-    //     //  (data) => {   // success callback
-    //     console.log("User registered:", data);
+       // Event Registration Service Create
+         this.eventRegistrationService.createEventRegistration(this.eventId, playerEventRegDetails).subscribe(
+            (data) => {       
+                  console.log("Player Registered For Event:", data);
     //     //alert(data);
-    //     if(data=="User is already exist !!"){
-    //       Swal.fire('Warning !!', data, 'warning');
-    //       return;
-    //     }else{
-    //     Swal.fire({
-    //       title:'Success !!', 
-    //       text:data, 
-    //       icon:'success',
-    //     confirmButtonText:'Go to Login',
-    //     showCancelButton: true,
-    //     cancelButtonText: 'Stay Here',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonColor: '#3085d6',
-    //   })
-    //     .then((result) => { 
-    //           if(result.isConfirmed){                   
-    //           this.router.navigate(['/login']);
-    //       }
-    //           else{
-    //           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    //           this.router.navigate(['/register']);
-    //     });
-    //    }
-    //   });
-    // }
+           if(data=="Already Registered"){
+           Swal.fire('Warning !!', data, 'warning');
+           return;
+        }else{
+         Swal.fire({
+           title:'Success !!', 
+           text:data, 
+           icon:'success',
+         confirmButtonText:'OK',
+         showCancelButton: true,
+         cancelButtonText: 'Go Back',
+         cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+       })
+         .then((result) => { 
+               if(result.isConfirmed){                   
+               this.router.navigate(['/player/events']);
+           }
+               else{
+               this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+               this.router.navigate(['/player/events']);
+         });
+        }
+       });
+     }
       
-    //    },
+        },
   
-    //     (error) => {  // error callback
-    //     console.error("Registration failed:", error);
-    //     //alert('Failed to register user!');
-    //     Swal.fire('Error !!', 'Failed to register user', 'error');
-    //   });
+      (error) => {  // error callback
+        console.error("Registration failed:", error);
+        //alert('Failed to register user!');
+         Swal.fire('Error !!', 'Failed to register user', 'error');
+       });
   
       }
    }

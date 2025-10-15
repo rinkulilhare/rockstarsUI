@@ -42,6 +42,15 @@ export class EventRegistrationService {
     return this.http.get(`${baseUrl}/event-reg/getAllRegDetailsByEvent/${eventId}`,{ headers });
   }
 
+  // getEventRegByEventIDAndProfileId
+  public getEventRegistrationByEventIdAndProfileId(eventId:number,profileId:number):Observable<any>{
+    const token = localStorage.getItem('jwtToken');
+     const headers = new HttpHeaders({
+      'Authorization':`Bearer ${token}`
+    })
+    return this.http.get(`${baseUrl}/event-reg/getByEidAndPPid/${eventId}/${profileId}`,{headers})
+  }
+
 
   //delete EventRegistration
   public deleteEventRegistration(eventRegistrationId:number):Observable<any>{
@@ -62,6 +71,16 @@ export class EventRegistrationService {
     return this.http.patch(`${baseUrl}/event-reg/update/${eventRegistrationId}`,eventRegistrationDTO,{responseType:'text'})
   }
 
+
+  //get RegistrationEvent BY ProfileID and EventID
+
+    getAllEventRegistrations(): Observable<any> {
+      const token=localStorage.getItem('jwtToken');
+    const headers=new HttpHeaders({
+      'Authorization':`Bearer ${token}`
+    })
+    return this.http.get(`${baseUrl}/event-reg/getAllEventProfilIds`,{ headers});
+  }
 
 
 

@@ -6,12 +6,12 @@
     <table mat-table [dataSource]="events" class="event-table" *ngIf="events.length">
 
       <ng-container matColumnDef="event_id">
-        <th mat-header-cell *matHeaderCellDef> Event Id </th>
+        <th mat-header-cell *matHeaderCellDef > Event Id </th>
         <td mat-cell *matCellDef="let element"> {{ element.event_id }} </td>
       </ng-container>
       
       <ng-container matColumnDef="event_name">
-        <th mat-header-cell *matHeaderCellDef> Event Name </th>
+        <th mat-header-cell *matHeaderCellDef > Event Name </th>
         <td mat-cell *matCellDef="let element"> {{ element.event_name }} </td>
       </ng-container>
 
@@ -26,7 +26,7 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <th mat-header-cell *matHeaderCellDef > Status </th>
         <td mat-cell *matCellDef="let element">
           <span class="status-badge1" [ngClass]="element.event_status ? 'Live' : 'Closed'">
             {{ element.event_status ? 'Live' : 'Closed' }}
@@ -35,11 +35,24 @@
       </ng-container>
 
      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Actions </th>
           <td mat-cell *matCellDef="let element">
-             <button mat-flat-button class="register-btn" (click)="onRegister(element)">
-              Click To Register
-        </button>
+            <div class="action-container">
+            <!-- Show icon only if applied -->
+    <ng-container *ngIf="isApplied(element.event_id); else registerButton">
+      <div class="applied-container">
+      <mat-icon class="applied">check_circle</mat-icon>
+      <span class="applied-text">Registered</span>
+      </div>
+    </ng-container>
+
+    <!-- Button if not applied -->
+    <ng-template #registerButton>
+      <button mat-flat-button class="register-btn" (click)="onRegister(element)">
+        Click To Register
+      </button>
+    </ng-template>
+    </div>
       </td>
       </ng-container>
 

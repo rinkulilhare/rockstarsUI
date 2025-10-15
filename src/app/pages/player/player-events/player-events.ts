@@ -21,6 +21,7 @@ import { ProfileService } from '../../../services/profile-service';
 import { PlayerProfile } from '../player-profile/player-profile';
 import { take } from 'rxjs';
 import { profile } from 'console';
+import { EventRegistrationService } from '../../../services/event-registration-service';
 
 
 interface Event {
@@ -55,6 +56,8 @@ export class PlayerEvents {
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
   profileId: number|null=null;
+  registrationData:any|null;
+  
  
   displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
 
@@ -62,7 +65,8 @@ export class PlayerEvents {
               private eventService:EventService,
               private playerProfile:ProfileService,
               private router:Router,
-              private cdRef:ChangeDetectorRef) {
+              private cdRef:ChangeDetectorRef,
+              private eventRegistrationService:EventRegistrationService) {
     this.eventForm = this.fb.group({
       event_name: ['', Validators.required],
       start_date: ['', Validators.required],
@@ -100,11 +104,30 @@ export class PlayerEvents {
       });
   }
 
+  public getRegStatus(): void {
+  
+  this.eventRegistrationService.getAllEventRegistrations().subscribe(
+    regData=>{
+      this.registrationData=regData;
+      console.log("Registration Data:: ",this.registrationData);
+    }
+  );
+}
+
+   // Returns true if the current profile has registered for this event
+  isApplied(eventId: number): boolean {
+    return this.registrationData.some((reg:any) => 
+      reg.event_id === eventId && 
+      reg.player_profile_id === this.profileId &&  reg.registration_status
+    );
+  }
+ 
   
   
   ngOnInit(): void {
       this.loadEvents();
      this.getPlayerProfileId();
+     this.getRegStatus();
     }
   
      
