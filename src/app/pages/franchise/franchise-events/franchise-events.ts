@@ -58,7 +58,7 @@ showEventForm = false;
   registrations:any[]=[];  //registered playersDetails fetch from here
   
  
-  displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
+  displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'Hits', 'actions'];
 
   constructor(private fb: FormBuilder,
               private eventService:EventService,
@@ -120,6 +120,16 @@ showEventForm = false;
     );
   }
 
+  onView(event:any){
+    this.router.navigateByUrl('/franchise/event-reg-view',{state:{
+        eventId:event.event_id,
+        eventName:event.event_name,
+      
+      }
+    });
+  }
+
+  
 
 
 

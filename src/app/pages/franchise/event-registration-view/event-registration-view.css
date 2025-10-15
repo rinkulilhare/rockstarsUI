@@ -1,0 +1,131 @@
+.event-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.event-card {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: linear-gradient(145deg, #f0f4ff, #ffffff);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.event-title {
+  flex: 1 1 100%;
+  text-align: center;
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 24px;
+  color: #1a237e;
+}
+
+.action-btn {
+  margin: 5px 0;
+}
+
+/* Player Cards */
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.player-card {
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.even-card {
+  background: #e3f2fd;
+}
+
+.odd-card {
+  background: #fff3e0;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.player-number {
+  background-color: #2c7be5;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.player-name {
+  color: #1a237e;
+}
+
+.player-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-bottom: 4px;
+}
+
+.player-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.player-value {
+  color: #333;
+}
+
+.price-badge {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.avail-badge {
+  background-color: #ffeb3b;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #000;
+}
+
+.retain-badge {
+  background-color: #ff7043;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.no-data {
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+  color: #999;
+}

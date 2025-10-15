@@ -34,12 +34,35 @@
         </td>
       </ng-container>
 
-     <ng-container matColumnDef="actions">
-  <th mat-header-cell *matHeaderCellDef> Registrations </th>
-  <td mat-cell *matCellDef="let element">
-    <span style="font-weight: bold; font-size: 1.2rem; color: palevioletred;">
-    {{ element.registrationCount}}
+     <ng-container matColumnDef="Hits">
+  <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+    Registrations
+  </th>
+  <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <span 
+      style="
+        font-weight: 600; 
+        font-size: 1.2rem; 
+        color: #d87093; /* palevioletred */
+      ">
+      {{ element }}
     </span>
+  </td>
+</ng-container>
+
+<!--View Button-->
+<ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+    Actions
+  </th>
+  <td mat-cell *matCellDef="let element" style="text-align: center;">
+    <button 
+      mat-flat-button 
+      color="primary" 
+      class="register-btn" 
+      (click)="onView(element)">
+      View
+    </button>
   </td>
 </ng-container>
 

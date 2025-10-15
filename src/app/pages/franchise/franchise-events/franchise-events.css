@@ -118,8 +118,14 @@ button[mat-icon-button] {
 .register-btn {
   background-color: #4caf50 !important;  /* Green */
   color: #ffffff;             /* White text */
+  margin: 4px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .register-btn:hover {
   background-color: #3431e2 !important;;  /* Darker green on hover */
 }
+
+
