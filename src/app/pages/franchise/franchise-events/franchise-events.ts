@@ -22,6 +22,7 @@ import { ProfileService } from '../../../services/profile-service';
 
 import { take } from 'rxjs';
 import { profile } from 'console'
+import { EventRegistrationService } from '../../../services/event-registration-service';
 
 interface Event {
   eventName: string;
@@ -54,6 +55,7 @@ showEventForm = false;
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
   profileId: number|null=null;
+  registrations:any[]=[];  //registered playersDetails fetch from here
   
  
   displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
@@ -62,7 +64,8 @@ showEventForm = false;
               private eventService:EventService,
               private playerProfile:ProfileService,
               private router:Router,
-              private cdRef:ChangeDetectorRef) {
+              private cdRef:ChangeDetectorRef,
+              private eventRegistrationService: EventRegistrationService) {
     this.eventForm = this.fb.group({
       event_name: ['', Validators.required],
       start_date: ['', Validators.required],
@@ -103,7 +106,25 @@ showEventForm = false;
     });
   }
 
+  loadRegistrations(eventId: number): void {
+    this.eventRegistrationService.showAllEventRegistrationByEventId(eventId).subscribe(
+      (data: any[]) => {
+        this.registrations = data;
+        console.log('registrations Length::', this.registrations.length)
+        console.log('Registrations:', this.registrations);
+         this.cdRef.detectChanges();
+      },
+      error => {
+        console.error('Error fetching registrations', error);
+      }
+    );
+  }
+
+
+
+
   ngOnInit(): void {
       this.loadEvents();
+      this.loadRegistrations(152);
     }
 }

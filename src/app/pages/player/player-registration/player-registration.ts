@@ -135,6 +135,14 @@ export class PlayerRegistration {
       }
    }
 
+   // Show RegistrationByEventId
+   
+
+
+
+
+
+
    onCancel(){
     console.log("Clicked Cancle");
     this.router.navigate(['/player/events']);
