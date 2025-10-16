@@ -2,11 +2,14 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  margin-top: 80px;
+  
+
 }
 
 .event-card {
-  width: 100%;
-  max-width: 1000px;
+  width: 120%;
+   max-width: 1000px; 
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -25,7 +28,7 @@
   flex: 1 1 100%;
   text-align: center;
   margin: 10px 0;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 24px;
   color: #1a237e;
 }
@@ -128,4 +131,223 @@
   padding: 30px;
   font-size: 14px;
   color: #999;
+}
+
+.full-table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+table {
+  background: white;
+}
+
+th.mat-header-cell {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+td.mat-cell {
+  text-align: center;
+  padding: 8px;
+}
+
+
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.event-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  color: #1a237e;
+  margin: 0;
+}
+
+
+mat-form-field.view-select .mat-mdc-form-field-flex {
+  padding: 0 6px !important;
+  height: 36px !important;
+}
+
+mat-select {
+  font-size: 13px;
+  
+}
+
+.action-btn {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+/* .view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-select {
+  width: 160px;
+} */
+
+
+.view-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.view-select {
+  width: 95px; /* smaller width for compact look */
+  height: 32px;
+}
+
+.view-select ::ng-deep .mat-mdc-form-field-flex {
+  height: 32px !important;
+  padding: 0 6px !important;
+  border-radius: 6px !important;
+}
+
+.view-select ::ng-deep .mat-mdc-text-field-wrapper {
+  min-height: 32px !important;
+}
+
+.view-select ::ng-deep .mat-mdc-form-field-infix {
+  padding: 4px 0 !important;
+  min-height: 32px !important;
+}
+
+.view-select ::ng-deep .mat-mdc-select-trigger {
+  height: 28px !important;
+  display: flex;
+  align-items: center;
+}
+
+.view-select ::ng-deep .mat-mdc-select-value {
+  font-size: 13px;
+  color: #333;
+}
+
+.view-select ::ng-deep .mat-mdc-form-field-outline {
+  border-radius: 6px;
+}
+
+button[mat-icon-button] {
+  width: 36px;
+  height: 36px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 800px;
+}
+
+/* Header style */
+.styled-table th {
+  background-color: #1976d2;
+  color: white;
+  font-weight: 500;
+  padding: 10px 12px;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-bottom: 2px solid #1565c0;
+}
+
+/* Cell style */
+.styled-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+/* Zebra striping */
+.styled-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.styled-table tr:hover {
+  background-color: #e3f2fd;
+  transition: background-color 0.3s ease;
+}
+
+/* Make it look clean on small screens */
+@media (max-width: 768px) {
+  .styled-table th,
+  .styled-table td {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
+.ribbon-title {
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #ff9800, #ffb74d);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 12px auto;
+}
+
+.shadow-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a237e;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  margin: 12px 0 18px 0;
+}
+
+.gradient-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #d25d19, #f54251);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px 0 20px 0;
+  position: relative;
+}
+
+.gradient-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #1976d2;
+  margin: 8px auto 0;
+  border-radius: 2px;
 }

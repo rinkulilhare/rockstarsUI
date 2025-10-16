@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { MatNativeDateModule } from '@angular/material/core'; // For datepicker
+import { MatNativeDateModule, MatOption } from '@angular/material/core'; // For datepicker
 import { MatToolbarModule } from '@angular/material/toolbar'; // optional, for top bar
 
 import { EventService } from '../../../services/event-service';
@@ -23,6 +23,7 @@ import { ProfileService } from '../../../services/profile-service';
 
 import { take } from 'rxjs';
 import { profile } from 'console';
+import { MatSelect } from '@angular/material/select';
 
 
 @Component({
@@ -37,7 +38,7 @@ import { profile } from 'console';
     MatNativeDateModule,
     MatIconModule,
     MatTableModule,
-    
+    MatOption,MatSelect,
     RouterModule
   ],
   templateUrl: './event-registration-view.html',
@@ -49,6 +50,7 @@ export class EventRegistrationView {
   eventName: string = '';
   profileId!:number;
   registrations:any[]=[];
+  viewMode: string = 'list';
   displayedColumns: string[] = [
     'player_name',
     'player_role',
@@ -101,7 +103,8 @@ export class EventRegistrationView {
   }
 
    goBack() {
-    this.router.navigate(['/franchise/events']); // adjust route as needed
+    console.log("goBack");
+    this.router.navigate(['/franchise/event']); // adjust route as needed
   }
 
    printTable() {

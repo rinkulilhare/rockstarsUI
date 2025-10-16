@@ -1,53 +1,135 @@
 <div class="event-container">
   <mat-card class="event-card event-table-card">
 
-    <!-- Heading + Action Buttons -->
+    <!-- Header Section -->
     <div class="table-header">
       <button mat-stroked-button color="primary" class="action-btn" (click)="goBack()">
-        ⬅ Back to Events
+        Back to Events
       </button>
 
-      <h2 class="text-center event-title">
+      <h2 class="text-center gradient-title">
         {{ eventName || 'Event Registrations' }}
       </h2>
 
-      <button mat-flat-button color="accent" class="action-btn" (click)="printTable()">
-        🖨 Print
-      </button>
+  <div class="view-toggle">
+  <mat-form-field appearance="outline" class="view-select" >
+    <mat-select [(value)]="viewMode" disableRipple>
+      <mat-option value="list">List</mat-option>
+      <mat-option value="table">Table</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-icon-button color="accent" matTooltip="Print" (click)="printTable()">
+    <mat-icon>print</mat-icon>
+  </button>
+</div>
+
     </div>
 
-    <!-- Player List -->
-    <div *ngIf="registrations.length; else noData" class="player-list">
-      <mat-card class="player-card" *ngFor="let player of registrations; let i = index" [ngClass]="i % 2 === 0 ? 'even-card' : 'odd-card'">
-        <div class="player-header">
-          <span class="player-number">#{{ i + 1 }}</span>
-          <span class="player-name">{{ player.player_name }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">Role:</span> <span class="player-value">{{ player.player_role }}</span>
-          <span class="player-label">Jersey No:</span> <span class="player-value">{{ player.jersery_no }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">Playing Style:</span> <span class="player-value">{{ player.playing_style }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">Specialization:</span> <span class="player-value">{{ player.specialization }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">DOB:</span> <span class="player-value">{{ player.dob | date:'mediumDate' }}</span>
-          <span class="player-label">Mobile:</span> <span class="player-value">{{ player.mobile_no }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">Address:</span> <span class="player-value">{{ player.address }}</span>
-        </div>
-        <div class="player-row">
-          <span class="player-label">Base Price:</span> <span class="player-value price-badge">₹{{ player.base_price }}</span>
-          <span class="player-label">Availability:</span> <span class="player-value avail-badge">{{ player.availability }}%</span>
-          <span class="player-label">Retain:</span> <span class="player-value retain-badge">{{ player.availble_to_be_retained }}</span>
-        </div>
-      </mat-card>
+    <!-- LIST VIEW -->
+    <div *ngIf="viewMode === 'list'">
+      <div *ngIf="registrations.length; else noData" class="player-list">
+        <mat-card class="player-card" *ngFor="let player of registrations; let i = index" [ngClass]="i % 2 === 0 ? 'even-card' : 'odd-card'">
+          <div class="player-header">
+            <span class="player-number">#{{ i + 1 }}</span>
+            <span class="player-name">{{ player.player_name }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">Role:</span> <span class="player-value">{{ player.player_role }}</span>
+            <span class="player-label">Jersey No:</span> <span class="player-value">{{ player.jersery_no }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">Playing Style:</span> <span class="player-value">{{ player.playing_style }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">Specialization:</span> <span class="player-value">{{ player.specialization }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">DOB:</span> <span class="player-value">{{ player.dob | date:'mediumDate' }}</span>
+            <span class="player-label">Mobile:</span> <span class="player-value">{{ player.mobile_no }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">Address:</span> <span class="player-value">{{ player.address }}</span>
+          </div>
+          <div class="player-row">
+            <span class="player-label">Base Price:</span> <span class="player-value price-badge">₹{{ player.base_price }}</span>
+            <span class="player-label">Availability:</span> <span class="player-value avail-badge">{{ player.availability }}%</span>
+            <span class="player-label">Retain:</span> <span class="player-value retain-badge">{{ player.availble_to_be_retained }}</span>
+          </div>
+        </mat-card>
+      </div>
     </div>
 
+    <!-- TABLE VIEW -->
+<div *ngIf="viewMode === 'table'" class="table-container">
+  <table
+    mat-table
+    [dataSource]="registrations"
+    class="mat-elevation-z2 styled-table"
+    *ngIf="registrations.length; else noData"
+  >
+    <ng-container matColumnDef="player_name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let p"> {{ p.player_name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="player_role">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let p"> {{ p.player_role }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="jersery_no">
+      <th mat-header-cell *matHeaderCellDef> Jersey </th>
+      <td mat-cell *matCellDef="let p"> {{ p.jersery_no }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="playing_style">
+      <th mat-header-cell *matHeaderCellDef> Playing Style </th>
+      <td mat-cell *matCellDef="let p"> {{ p.playing_style }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="specialization">
+      <th mat-header-cell *matHeaderCellDef> Specialization </th>
+      <td mat-cell *matCellDef="let p"> {{ p.specialization }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef> DOB </th>
+      <td mat-cell *matCellDef="let p"> {{ p.dob | date:'mediumDate' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mobile_no">
+      <th mat-header-cell *matHeaderCellDef> Mobile </th>
+      <td mat-cell *matCellDef="let p"> {{ p.mobile_no }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let p"> {{ p.address }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="base_price">
+      <th mat-header-cell *matHeaderCellDef> Base Price </th>
+      <td mat-cell *matCellDef="let p"> ₹{{ p.base_price }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availability">
+      <th mat-header-cell *matHeaderCellDef> Availability </th>
+      <td mat-cell *matCellDef="let p"> {{ p.availability }}% </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availble_to_be_retained">
+      <th mat-header-cell *matHeaderCellDef> Retain </th>
+      <td mat-cell *matCellDef="let p"> {{ p.availble_to_be_retained }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+
+    <!-- No Data Template -->
     <ng-template #noData>
       <div class="no-data">No players registered for this event yet.</div>
     </ng-template>
