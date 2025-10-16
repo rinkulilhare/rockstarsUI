@@ -35,7 +35,7 @@
             <span class="player-name">{{ player.player_name }}</span>
           </div>
           <div class="player-row">
-            <span class="player-label">Role:</span> <span class="player-value">{{ player.player_role }}</span>
+            <span class="player-label">Role:</span> <span class="player- role-text">{{ player.player_role }}</span>
             <span class="player-label">Jersey No:</span> <span class="player-value">{{ player.jersery_no }}</span>
           </div>
           <div class="player-row">
@@ -53,8 +53,32 @@
           </div>
           <div class="player-row">
             <span class="player-label">Base Price:</span> <span class="player-value price-badge">₹{{ player.base_price }}</span>
-            <span class="player-label">Availability:</span> <span class="player-value avail-badge">{{ player.availability }}%</span>
-            <span class="player-label">Retain:</span> <span class="player-value retain-badge">{{ player.availble_to_be_retained }}</span>
+          
+            
+            <!-- Availability -->
+  <span class="player-label">Availability:</span>
+  <span class="player-value avail-badge"
+        [ngClass]="{
+          'avail-badge25': player.availability <= 25,
+          'avail-badge50': player.availability > 25 && player.availability < 50,
+          'avail-badge75': player.availability >= 50 && player.availability < 75,
+          'avail-badge100': player.availability >=75 && player.availability <=100
+        }">
+    {{ player.availability }}%
+  </span>
+                   
+
+            <!-- Retain -->
+  <span class="player-label">Retain:</span>
+  <span class="player-value retain-badge"
+        [ngClass]="{
+          'retain-badgeY': player.availble_to_be_retained === 'Yes',
+          'retain-badgeN': player.availble_to_be_retained === 'No',
+          'retain-badgeP': player.availble_to_be_retained !== 'Yes' && player.availble_to_be_retained !== 'No'
+        }">
+    {{ player.availble_to_be_retained }}
+  </span>
+
           </div>
         </mat-card>
       </div>
