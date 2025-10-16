@@ -115,6 +115,7 @@ export class EventRegistrationView {
       window.print();
       document.body.innerHTML = originalContents;
       window.location.reload(); // reload to restore Angular bindings
+     //this.router.navigate(['francise/events']);
     }
   }
 
