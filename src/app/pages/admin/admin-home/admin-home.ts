@@ -156,3 +156,5 @@ export class AdminHome implements OnInit {
     console.log("In Franchise")
   }
 }
+
+//admin
