@@ -64,7 +64,7 @@
   <!-- Role dropdown for logged-in users -->
   <div *ngIf="login.isLoggedIn()" class="user-role-container">
     <label for="roleSelect" class="user-name">{{ login.getUserName() }}</label>
-    <select [(ngModel)]="selectedRole" name="roleSelect" (click)="onRoleSubmit()" class="role-select">
+    <select [(ngModel)]="selectedRole" name="roleSelect" (change)="onRoleSubmit()" class="role-select">
       <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
     </select>
      <button (click)="logout()" matTooltip="Logout" aria-label="Logout">
@@ -100,9 +100,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mobileMenu="matMenu" class="custom-mobile-menu">
-      <a href="#home"><button mat-menu-item >Home</button></a>
-      <!-- <button mat-menu-item>About Us</button> -->
-      <a href="#event"><button mat-menu-item >Events</button></a>
+      <!-- <a href="#home"><button mat-menu-item >Home</button></a> -->
+      <button mat-menu-item>----</button>
+      <!-- <a href="#event"><button mat-menu-item >Events</button></a> -->
       <!-- <button mat-menu-item>Contact</button> -->
        
       <div *ngIf="!login.isLoggedIn()">

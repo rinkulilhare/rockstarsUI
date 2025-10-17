@@ -97,3 +97,89 @@
 /* Status badges reuse profile style */
 .status-badge1.active { background-color: #c8e6c9; color: #2e7d32; border-color: #81c784; }
 .status-badge1.inactive { background-color: #ffcdd2; color: #c62828; border-color: #ef9a9a; }
+
+
+/* -------------------------------
+   Responsive Event Container
+   ------------------------------- */
+@media (max-width: 1024px) {
+  .event-container {
+    flex-direction: column;       /* stack table & form vertically */
+    gap: 20px;
+    align-items: stretch;         /* cards take full width */
+  }
+
+  .event-form-card {
+    flex: 1 1 auto;               /* form card full width */
+    max-width: 100%;
+  }
+
+  .event-table-card {
+    flex: 1 1 auto;               /* table card full width */
+    max-width: 100%;
+    overflow-x: auto;             /* allow horizontal scroll if table too wide */
+  }
+
+  .event-table td.key,
+  .event-table td.value {
+    padding: 8px 6px;             /* reduce padding for smaller screens */
+  }
+
+  .button-group {
+    flex-direction: column;       /* stack form buttons vertically */
+    gap: 10px;
+  }
+
+  .button-group button {
+    width: 100%;                  /* buttons full width */
+    max-width: 100%;
+  }
+}
+
+/* Smaller tablets / large phones */
+@media (max-width: 768px) {
+  .event-form-card,
+  .event-table-card {
+    padding: 15px;                /* reduce padding */
+  }
+
+  .form-toggle-btn {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .event-table td.key,
+  .event-table td.value {
+    font-size: 0.9rem;            /* slightly smaller text */
+  }
+
+  .action-cell button {
+    padding: 4px;                 /* smaller icons for small screens */
+  }
+}
+
+/* Mobile Phones (up to 480px) */
+@media (max-width: 480px) {
+  .event-form-card,
+  .event-table-card {
+    padding: 12px;                /* minimal padding */
+  }
+
+  .form-toggle-btn {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .event-table td.key,
+  .event-table td.value {
+    font-size: 0.85rem;           /* smaller table text */
+  }
+
+  .action-cell button {
+    padding: 3px;                 /* tiny icons */
+  }
+
+  .button-group {
+    gap: 8px;
+  }
+}

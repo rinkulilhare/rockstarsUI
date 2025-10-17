@@ -1,27 +1,80 @@
-mat-list-item mat-icon {
-  margin-right: 12px;
-}
-
-/* Assuming navbar height is 70px */
+/* Desktop / default sidebar styles */
 .sidenav {
-  margin-top: 70px;       /* Push down below navbar */
-  height: calc(100vh - 70px); /* Fill remaining vertical space */
-  overflow-y: auto;       /* Scroll if content exceeds height */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* subtle shadow */
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-/* Optional: style the mat-toolbar inside sidenav */
 .sidenav mat-toolbar {
-  position: sticky;   /* Keeps toolbar visible on scroll */
-  top: 0;             /* Relative to sidenav */
+  position: sticky;
+  top: 0;
   z-index: 10;
 }
 
-/* Optional: style list items */
-.sidenav mat-list-item, .sidenav a[mat-list-item] {
-  cursor: pointer;
+.sidenav mat-icon {
+  margin-right: 8px;
 }
 
-.sidenav mat-icon {
-  margin-right: 8px; /* spacing between icon and text */
+/* -------------------------------- */
+/*  Mobile View - Bottom Navbar   */
+/* -------------------------------- */
+@media (max-width: 768px) {
+  /* Bottom navbar container */
+  .sidenav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* slightly taller for comfort */
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.6), rgba(33, 203, 243, 0.6));
+    backdrop-filter: blur(9px);
+    color: whitesmoke;
+    z-index: 1000;
+    padding: 6px 0; /* small vertical padding */
+  }
+
+  .sidenav mat-toolbar {
+    display: none; /* hide 'Menu' toolbar */
+  }
+
+  /* Horizontal layout for nav items */
+  .sidenav mat-nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Each icon block */
+  .sidenav mat-list-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;           /* ✅ each button area equal width */
+    padding: 8px 0;        /* ✅ vertical padding for better spacing */
+    border-radius: 10px;   /* optional: rounded tap area */
+    transition: background 0.3s;
+  }
+
+  /* Hover / active feedback */
+  .sidenav mat-list-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Icons centered with breathing space */
+  .sidenav mat-icon {
+    margin: 4px 0;         /* ✅ small top/bottom gap */
+    font-size: 26px;       /* slightly larger for clarity */
+  }
+
+  /* Hide labels on mobile */
+  .sidenav span {
+    display: none;
+  }
 }

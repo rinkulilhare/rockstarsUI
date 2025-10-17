@@ -267,3 +267,379 @@ mat-card h3 {
   color: #c62828;
   border-color: #ef9a9a;
 }
+
+.profile-container {
+  display: flex;
+  justify-content: center;   /* align items to start (left) */
+  padding: 40px 0 20px 40px;    /* top and left padding */
+  margin-top: 70px;             /* below navbar, adjust as needed */
+  box-sizing: border-box;
+}
+
+.profile-card {
+  width: 400px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #f2f4f8);
+  border: 1px solid #e3e7ee;
+}
+
+
+.profile-photo {
+  width: 100;                /* size of the circular frame */
+  height: 100px;
+  border-radius: 50%;           /* makes it a circle */
+  overflow: hidden;
+  object-fit: cover;             /* ensures image doesn't overflow border */
+  border: 3px solid #4caf50;    /* border color and thickness */
+}
+
+
+.profile-name {
+  margin: 10px 0 20px 0;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden; /* rounded corners */
+  background: #f9fbfd; /* light background for contrast */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+/* Alternate row background */
+.profile-table tr:nth-child(even) {
+  background: #eef4fb;
+}
+
+/* Hover effect */
+.profile-table tr:hover {
+  background: #dcecff;
+  transition: background 0.3s ease;
+}
+
+/* Key column styling */
+.profile-table td.key {
+  font-weight: 600;
+  text-align: left;
+  width: 40%;
+  color: #1565c0; /* blue shade for label */
+  padding: 12px 10px;
+}
+
+/* Value column styling */
+.profile-table td.value {
+  text-align: right;
+  width: 60%;
+  color: #333;
+  font-weight: 500;
+  padding: 12px 10px;
+}
+
+/* Border line between rows */
+.profile-table tr + tr td {
+  border-top: 1px solid #e0e0e0;
+}
+
+
+
+.update-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+/* Update button - blue gradient */
+.update-button button {
+  background: linear-gradient(135deg, #4dabf5, #1e88e5);
+  color: white;
+  font-weight: 700;
+  padding: 10px 25px;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.update-button button:hover {
+  background: linear-gradient(135deg, #1e88e5, #4dabf5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+
+.mt20{
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+
+mat-card {
+  margin-top: 100px; /* Adjust this value as per your navbar height */
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+mat-card h3 {
+  text-align: center;
+  color: #1565c0;
+  margin-bottom: 20px;
+}
+
+.profile-status-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;  /* space between photo and status */
+  position: relative;
+  margin-left: 100px;
+  
+}
+
+.active-status {
+  background-color: #4caf50;
+  color: white;
+  margin-left: 5px; /* pushes badge slightly to right */
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+
+}
+
+.inactive-status {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* container for image + badge */
+.profile-photo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* circular profile image */
+/* .profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #4caf50;
+  object-fit: cover;
+} */
+
+/* status badge */
+/* .status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+} */
+
+/* .status-badge.active {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  border-color: #81c784;
+} */
+
+/* .status-badge.inactive {
+  background-color: #ffcdd2;
+  color: #c62828;
+  border-color: #ef9a9a;
+} */
+
+.profile-photo-wrapper {
+  position: relative; /* container for badge positioning */
+  display: inline-block; /* keep centered */
+}
+
+/* profile photo stays fixed */
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #4caf50;
+  object-fit: cover;
+  display: block;
+}
+
+/* status badge overlapping top-right corner */
+.status-badge {
+  position: absolute;
+  top: 0;          /* top corner */
+  right: 0;        /* right corner */
+  transform: translate(25%, -25%); /* overlap outside edge */
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+}
+
+/* Active badge color */
+.status-badge.active {
+  background-color: #4caf50;
+}
+
+/* Inactive badge color */
+.status-badge.inactive {
+  background-color: #f44336;
+}
+
+.status-badge1 {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.status-badge1.active {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  border-color: #81c784;
+}
+
+.status-badge1.inactive {
+  background-color: #ffcdd2;
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+
+/* =========================================
+   Responsive Design for Tablets & Mobile
+   ========================================= */
+@media (max-width: 1024px) {
+  mat-card {
+    width: 90%;
+    margin: 80px auto 20px auto; /* keep 80px top margin */
+    padding: 15px;
+  }
+
+  mat-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .profile-photo-wrapper {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .profile-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  .mt20 {
+    font-size: 1rem;
+  }
+
+  .profile-table td.key,
+  .profile-table td.value {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 6px;
+  }
+
+  .profile-table tr {
+    display: block;
+    margin-bottom: 8px;
+    background: #fefefe;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .status-badge1 {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .update-button button {
+    width: 100%;
+    max-width: 220px;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}
+
+/* -------------------------------
+   Centered table layout for mobile
+   ------------------------------- */
+@media (max-width: 768px) {
+
+  .profile-table tr {
+    display: flex;                /* flex row layout */
+    justify-content: flex-start;  /* align items to the left */
+    align-items: center;          /* vertically centered */
+    gap: 10px;                    /* space between key and value */
+    margin-bottom: 6px;
+    background: #fefefe;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 6px 10px;
+  }
+
+  .profile-table td.key,
+  .profile-table td.value {
+    display: inline-block;
+    text-align: left;             /* left-aligned */
+    padding: 4px 0;
+    width: auto;                  /* let flex control width */
+  }
+
+  .profile-table td.key {
+    font-weight: 600;
+    color: #1565c0;               /* preserve key color */
+    min-width: 120px;             /* optional: keep keys aligned */
+  }
+
+  .profile-table td.value {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .status-badge1 {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+}
