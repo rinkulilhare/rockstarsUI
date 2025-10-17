@@ -1,3 +1,38 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <h1>franchise-Home works!</h1>
+<div class="franchise-home-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section">
+    <h1>{{ greetingMessage }}, <span class="highlight">{{ userName || 'Franchise Manager' }}</span>!</h1>
+    <p class="sub-text">Welcome to <strong>The Rockstars Franchise Dashboard</strong></p>
+  </div>
+
+  <!-- Quick Actions / Info Card -->
+  <div class="info-card">
+    <h3 class="card-title">Franchise Overview</h3>
+    <ul>
+      <li 
+        *ngIf="profileStatus === false"
+        [ngClass]="'status-false'"
+      >
+        Your franchise profile is incomplete. Please update your details.
+      </li>
+
+      <li 
+        *ngIf="profileStatus === true"
+        [ngClass]="'status-true'"
+      >
+        Your franchise profile is up to date.
+      </li>
+
+      <li>View registered players in event.</li>
+      <li>Monitor past event participation and achievements.</li>
+      <li>Manage auctions and financial transactions for your franchise.</li>
+      <li>Track franchise performance and registered players efficiently.</li>
+      <li>Generate reports and analytics for franchise activities.</li>
+    </ul>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer-note">
+    <p>We’re glad to have you here — Let’s make your franchise shine!</p>
+  </div>
 </div>

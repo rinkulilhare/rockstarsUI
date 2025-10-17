@@ -51,6 +51,7 @@ export class Navbar implements OnInit{
       if (isPlatformBrowser(this.platformId)) {
         const token = localStorage.getItem('jwtToken');
 
+   
         if(token!=null){
          this.login.getCurrentUser().subscribe({
           next: (data) => {
@@ -64,15 +65,17 @@ export class Navbar implements OnInit{
               this.roles=this.login.getUserRoles();
               console.log(this.roles);
               //detectChange
-              this.cd.markForCheck(); 
+              //this.cd.markForCheck(); 
               //set default role
                 if(this.roles.length>0){
+                   
                 this.selectedRole=this.roles[0]
+                // this.cd.detectChanges();
                   }
 
                    // Force Angular to update the view
                    this.cd.detectChanges();
-                   setTimeout(() => this.cd.detectChanges(), 0);
+                  //setTimeout(() => this.cd.detectChanges(), 0);
 
                 console.log("BEFOR CHANGE:: "+this.selectedRole);
                       this.cd.detectChanges();
@@ -106,6 +109,8 @@ export class Navbar implements OnInit{
     if(isPlatformBrowser(this.platformId)){
     this.login.logout();
     this.user=[];
+    this.roles=[];  //updated
+    this.selectedRole='';  //updated
    // window.location.reload();
     this.router.navigate(['/login']);
     

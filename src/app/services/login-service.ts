@@ -13,7 +13,9 @@ export class LoginService {
   
     
 
-  constructor (private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor (private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) {
+ 
+   }
 
   
 
@@ -46,7 +48,8 @@ export class LoginService {
    public setUser(user:any){
    
     localStorage.setItem('user',JSON.stringify(user));
-   }
+
+    }
 
    //get user
 

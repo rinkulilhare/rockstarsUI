@@ -5,6 +5,7 @@
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   background: #ffffff;
+  
 }
 
 .update-form {
@@ -24,7 +25,8 @@
   display: flex;
   gap: 20px;
   align-items: flex-start; /* Align both cards to top */
-  margin-top: 50px;        /* slightly below navbar */
+  margin-top: 80px;        /* slightly below navbar */
+
 }
 
 /* Reuse profile-card styles for both table & form */
@@ -70,6 +72,22 @@
   background: #f9fbfd;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+
+.action-cell {
+  display: flex;
+  gap: 8px;
+  justify-content: center; /* center icons in the cell */
+}
+
+.action-cell button {
+  padding: 6px;
+  transition: transform 0.2s;
+}
+
+.action-cell button:hover {
+  transform: scale(1.1);
+}
+
 
 .event-table tr:nth-child(even) { background: #eef4fb; }
 .event-table tr:hover { background: #dcecff; transition: 0.3s; }

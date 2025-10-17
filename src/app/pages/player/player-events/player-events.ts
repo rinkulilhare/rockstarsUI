@@ -56,6 +56,7 @@ export class PlayerEvents {
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
   profileId: number|null=null;
+  isProfileActive!:boolean;
   registrationData:any|null;
   
  
@@ -100,6 +101,7 @@ export class PlayerEvents {
   public getPlayerProfileId(){
       this.playerProfile.getPlayerProfile().subscribe(profile => {
       this.profileId = profile.player_profile_id;
+      this.isProfileActive=profile.status;
       console.log('Profile ID:', this.profileId);
       });
   }
@@ -133,10 +135,11 @@ export class PlayerEvents {
      
       //Register for Event
       onRegister(event: any) {
-        this.getPlayerProfileId();
+      this.getPlayerProfileId();
       console.log('Event_id:', event.event_id);
       console.log('Profile_Id:', this.profileId );
       // TODO: Add your registration logic here
+      if(this.isProfileActive===true){
 
       this.router.navigateByUrl('/player/event-register',{state:{
         eventId:event.event_id,
@@ -144,7 +147,20 @@ export class PlayerEvents {
         profileId:this.profileId
       }
     });
+  }else{
+    Swal.fire({
+    icon: 'warning',
+    title: 'Warning !!',
+    html: 'Your Profile is Not Active <br> Please Update Your Profile First',
+    confirmButtonText: 'Go to Profile',
+    confirmButtonColor: '#f44336'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.router.navigate(['/player/player-profile']); // change this route as needed
+    }
+  });
   }
+}
 
     onCancel(){
       console.log("Cancle clicked");

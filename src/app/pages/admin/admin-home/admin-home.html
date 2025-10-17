@@ -1,3 +1,114 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <h1>Admin-home works!</h1>
+<div class="dashboard-container">
+
+  <h1 class="dashboard-title">Admin Dashboard</h1>
+
+  <div class="card-grid">
+
+    <!-- Events Card -->
+    <mat-card class="dashboard-card events-card">
+      <mat-card-header>
+        <mat-icon>event</mat-icon>
+        <mat-card-title>Events</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ totalEvents || 0 }}</h2>
+        <p>Total events created</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToEvents()">View Events</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Players Card -->
+    <mat-card class="dashboard-card players-card">
+      <mat-card-header>
+        <mat-icon>people</mat-icon>
+        <mat-card-title>Players</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ totalPlayers || 0 }}</h2>
+        <p>Registered players</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToPlayers()">View Players</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Registrations Card -->
+    <mat-card class="dashboard-card registrations-card">
+      <mat-card-header>
+        <mat-icon>assignment_turned_in</mat-icon>
+        <mat-card-title>Registrations</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ totalRegistrations || 0 }}</h2>
+        <p>Completed registrations</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToRegistrations()">View Registrations</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Franchise Card -->
+    <mat-card class="dashboard-card franchise-card">
+      <mat-card-header>
+        <mat-icon>apartment</mat-icon>
+        <mat-card-title>Franchises</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ 05 }}</h2>
+        <p>Total franchises managed</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToFranchises()">View Franchises</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Users Card -->
+    <mat-card class="dashboard-card users-card">
+      <mat-card-header>
+        <mat-icon>person</mat-icon>
+        <mat-card-title>Users</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>{{ 88 }}</h2>
+        <p>Total registered users</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToUsers()">View Users</button>
+      </mat-card-actions>
+    </mat-card>
+
+   <!-- Auctions Card -->
+<mat-card class="dashboard-card auctions-card">
+  <mat-card-header>
+    <mat-icon>gavel</mat-icon>
+    <mat-card-title>Auctions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h2>{{ 09 }}</h2>
+    <p>Total auctions conducted</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button color="primary" (click)="goToAuctions()">View Auctions</button>
+  </mat-card-actions>
+</mat-card>
+
+    <!-- Transactions Card -->
+    <mat-card class="dashboard-card transactions-card">
+      <mat-card-header>
+        <mat-icon>payment</mat-icon>
+        <mat-card-title>Transactions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2> {{"999"}} </h2>
+        <p>Total transactions completed</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="goToTransactions()">View Transactions</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
 </div>

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;   /* align items to start (left) */
   padding: 40px 0 20px 40px;    /* top and left padding */
-  margin-top: 70px;             /* below navbar, adjust as needed */
+  margin-top: 80px;             /* below navbar, adjust as needed */
   box-sizing: border-box;
 }
 

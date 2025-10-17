@@ -1,3 +1,32 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <h1>player-events works!</h1>
+<div class="player-home-container">
+  <div class="welcome-section">
+    <h1>{{ greetingMessage }}, {{ userName || 'Guest' }}!</h1>
+    <p class="sub-text">Welcome to <strong>The Rockstars</strong></p>
+  </div>
+
+  <div class="info-card">
+    <h3>Things you can do:</h3>
+    <ul>
+      <li 
+        *ngIf="profileStatus === false"
+        [ngClass]="'status-false'"
+      >
+        Update your profile to complete your details.
+      </li>
+
+      <li 
+        *ngIf="profileStatus === true"
+        [ngClass]="'status-true'"
+      >
+        Your profile is up to date.
+      </li>
+
+      <li>Visit the <strong>Events</strong> section to register for new events.</li>
+      <li>Check your past event participation and achievements.</li>
+    </ul>
+  </div>
+
+  <div class="footer-note">
+    <p>We’re glad to have you here — Let’s make today amazing!</p>
+  </div>
 </div>

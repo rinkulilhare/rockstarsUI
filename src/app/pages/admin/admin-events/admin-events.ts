@@ -176,6 +176,17 @@ export class AdminEvents implements OnInit{
     }
 
   }
+
+   onViewEvent(event:any){
+    this.router.navigateByUrl('/admin/event-reg-view',{state:{
+        eventId:event.event_id,
+        eventName:event.event_name,
+      
+      }
+    });
+  }
+
+
   onCancel(){
     console.log("Cancle clicked");
     this.eventForm.reset();
