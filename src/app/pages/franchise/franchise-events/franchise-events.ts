@@ -55,6 +55,7 @@ showEventForm = false;
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
   profileId: number|null=null;
+  profileStatus!:boolean;
   registrations:any[]=[];  //registered playersDetails fetch from here
   
  
@@ -62,7 +63,7 @@ showEventForm = false;
 
   constructor(private fb: FormBuilder,
               private eventService:EventService,
-              private playerProfile:ProfileService,
+              private profileService:ProfileService,
               private router:Router,
               private cdRef:ChangeDetectorRef,
               private eventRegistrationService: EventRegistrationService) {
@@ -106,35 +107,58 @@ showEventForm = false;
     });
   }
 
-  loadRegistrations(eventId: number): void {
-    this.eventRegistrationService.showAllEventRegistrationByEventId(eventId).subscribe(
-      (data: any[]) => {
-        this.registrations = data;
-        console.log('registrations Length::', this.registrations.length)
-        console.log('Registrations:', this.registrations);
-         this.cdRef.detectChanges();
-      },
-      error => {
-        console.error('Error fetching registrations', error);
-      }
-    );
+  // loadRegistrations(eventId: number): void {
+  //   this.eventRegistrationService.showAllEventRegistrationByEventId(eventId).subscribe(
+  //     (data: any[]) => {
+  //       this.registrations = data;
+  //       console.log('registrations Length::', this.registrations.length)
+  //       console.log('Registrations:', this.registrations);
+  //        this.cdRef.detectChanges();
+  //     },
+  //     error => {
+  //       console.error('Error fetching registrations', error);
+  //     }
+  //   );
+  // }
+
+  getProfileStatus(){
+    this.profileService.getFranchiseProfile().subscribe(
+      profile=>{
+        this.profileStatus=profile.status
+      });
   }
 
   onView(event:any){
+    if(this.profileStatus===true){
     this.router.navigateByUrl('/franchise/event-reg-view',{state:{
         eventId:event.event_id,
         eventName:event.event_name,
       
       }
     });
+  }else{
+     Swal.fire({
+        icon: 'warning',
+        title: 'Warning !!',
+        html: 'Your Profile is Not Active <br> Please Update Your Profile First',
+        confirmButtonText: 'Go to Profile',
+        confirmButtonColor: '#f44336'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/franchise/franchise-profile']); // change this route as needed
+        }
+      });
   }
+}
 
   
 
 
 
   ngOnInit(): void {
+      
       this.loadEvents();
-      this.loadRegistrations(152);
+   //   this.loadRegistrations(0);
+      this.getProfileStatus();
     }
 }
