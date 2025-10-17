@@ -6,6 +6,8 @@ import { LoginService } from '../../../services/login-service';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ProfileService } from '../../../services/profile-service';
+import { UserService } from '../../../services/user-service';
+import { count } from 'console';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class AdminHome implements OnInit {
   
 
   user: any|null=null;
+  userCount:any|null=null;
   greetingMessage: string = '';
   userName: string='';
   profile:any|null=null;
@@ -33,10 +36,10 @@ export class AdminHome implements OnInit {
   dashboardCards: any[] = [];
 
   constructor(private login:LoginService, @Inject(PLATFORM_ID) private platformId: Object,
-              private profileService:ProfileService, private router: Router){
+              private profileService:ProfileService, private router: Router,
+              private userService:UserService){
 
-    
-  }//constructor closed
+      }//constructor closed
 
  
    setGreeting(): void {
@@ -52,6 +55,7 @@ export class AdminHome implements OnInit {
       this.greetingMessage = 'Good Night';
     }
   }
+
 
 //  getUser(){
 //   if (isPlatformBrowser(this.platformId)) {
@@ -80,6 +84,25 @@ export class AdminHome implements OnInit {
   }
 
 
+ getUserCount() {
+  this.userService.getUsers().subscribe(
+   count => {
+      this.userCount =  count.length;// convert in case it's a string
+      console.log("User Count:", this.userCount);
+    }
+  );
+}
+
+  getCountUsers(){
+    this.userService.getUserCount().subscribe(
+      count=>{
+        this.userCount=count;
+        console.log("User Count API: ",this.userCount);
+      }
+    );
+  }
+
+
 
 
 
@@ -90,23 +113,19 @@ export class AdminHome implements OnInit {
     this.userName=this.login.getUserName();
     //this.getProfile();
     this.getPlayerProfileStaus();
-
+   // this.userCount=Number(this.userService.getUserCount());
+   // this.getUserCount();
+    this.getCountUsers();
     console.log("Get UserName From Local: ",localStorage.getItem('userName'));
    
-     this.dashboardCards = [
-      { title: 'Events', value: this.totalEvents || 0, subtitle: 'Total events created', icon: 'event', class: 'events-card', action: this.goToEvents.bind(this) },
-      { title: 'Players', value: this.totalPlayers || 0, subtitle: 'Registered players', icon: 'people', class: 'players-card', action: this.goToPlayers.bind(this) },
-      { title: 'Registrations', value: this.totalRegistrations || 0, subtitle: 'Completed registrations', icon: 'assignment_turned_in', class: 'registrations-card', action: this.goToRegistrations.bind(this) },
-      { title: 'Franchises', value: '05', subtitle: 'Total franchises managed', icon: 'apartment', class: 'franchise-card', action: this.goToFranchises.bind(this) },
-      { title: 'Users', value: '88', subtitle: 'Total registered users', icon: 'person', class: 'users-card', action: this.goToUsers.bind(this) },
-      { title: 'Auctions', value: '09', subtitle: 'Total auctions conducted', icon: 'gavel', class: 'auctions-card', action: this.goToAuctions.bind(this) },
-      { title: 'Transactions', value: '999', subtitle: 'Total transactions completed', icon: 'payment', class: 'transactions-card', action: this.goToTransactions.bind(this) },
-    ];
+   
+    
 
 
   }
 
   goToEvents() {
+    console.log("Event HIts")
     this.router.navigate(['/franchise/events']);
 
    

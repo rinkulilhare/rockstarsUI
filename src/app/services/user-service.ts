@@ -16,4 +16,12 @@ export class UserService {
     return this.http.post(`${baseUrl}/user/register/${role}`,user,{responseType:'text'});
 
 }
+
+  public getUsers(){
+    return this.http.get(`${baseUrl}/user/userList`,{responseType:'text'})
+  }
+
+   public getUserCount(){
+    return this.http.get<number>(`${baseUrl}/user/count`)
+  }
 }
