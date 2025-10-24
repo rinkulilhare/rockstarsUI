@@ -111,7 +111,12 @@ export const routes: Routes = [
                 path: 'roles',
                 component:AdminRoles,
                // pathMatch: 'full'
+            },
+            {
+                path:'event-reg-view',
+                component: EventRegistrationView
             }
+
         ]   
         
     },

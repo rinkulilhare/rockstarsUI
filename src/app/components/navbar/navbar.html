@@ -115,7 +115,7 @@
 
       <div *ngIf="login.isLoggedIn()">
         <label for="roleSelect" >{{ login.getUserName() }}</label><br>
-    <select [(ngModel)]="selectedRole" name="roleSelect" (change)="onRoleSubmit()" >
+    <select [(ngModel)]="selectedRole" name="roleSelect" onclick="onRoleSubmit()" >
       <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
     </select><br>
      <button (click)="logout()" matTooltip="Logout" aria-label="Logout">

@@ -24,6 +24,7 @@ import { ProfileService } from '../../../services/profile-service';
 import { take } from 'rxjs';
 import { profile } from 'console';
 import { MatSelect } from '@angular/material/select';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -69,7 +70,8 @@ export class EventRegistrationView {
 
   constructor(private router:Router,
               private eventRegistrationService:EventRegistrationService,
-               private cdRef:ChangeDetectorRef){
+               private cdRef:ChangeDetectorRef,
+              private location: Location){
     
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras.state as { eventId: number; eventName:string; profileId: number };
@@ -104,7 +106,8 @@ export class EventRegistrationView {
 
    goBack() {
     console.log("goBack");
-    this.router.navigate(['/franchise/event']); // adjust route as needed
+    this.location.back();
+   // this.router.navigate(['/franchise/event']); // adjust route as needed
   }
 
    printTable() {

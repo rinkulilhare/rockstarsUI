@@ -24,4 +24,17 @@ export class UserService {
    public getUserCount(){
     return this.http.get<number>(`${baseUrl}/user/count`)
   }
+
+  public getUsersHavingFranchise(){
+    return this.http.get(`${baseUrl}/user/listFranchise`,{responseType:'text'})
+  }
+
+  public updateUserEmailById(user:any, userId:number){
+    return this.http.patch(`${baseUrl}/user/updateMail/${userId}`,user,{responseType:'text'})
+  }
+
+  public deleteUserById(userId:number){
+    return this.http.delete(`${baseUrl}/user/delete/${userId}`,{responseType:'text'})
+  }
+  
 }

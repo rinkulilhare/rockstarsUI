@@ -1,3 +1,96 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <h1>Admin-Franchises works!</h1>
+<div class="event-container">
+    <!-- {{franchises|json}} -->
+  <!-- Left: Franchise Table -->
+  <mat-card class="event-card event-table-card">
+    <h3 class="text-center">Franchise List</h3>
+    <table mat-table [dataSource]="franchises" class="event-table" *ngIf="franchises.length">
+
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element" aria-disabled="true"> {{ element.userId }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userName }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+      </ng-container>
+
+   
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-badge1" [ngClass]="element.status === 'ACTIVE' ? 'active' : 'inactive'">
+            {{ element.status }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="onEditFranchise(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDeleteFranchise(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="onViewFranchise(element)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+
+  <!-- Right: Franchise Registration Form -->
+  <mat-card class="event-card event-form-card" [class.show-form]="showForm">
+    <button mat-raised-button color="primary" (click)="toggleForm()" class="form-toggle-btn">
+      {{ showForm ? 'Hide Form' : 'Register Franchise' }}
+    </button>
+
+    <form *ngIf="showForm" [formGroup]="franchiseForm" (ngSubmit)="onSaveFranchise()">
+      <h3 class="text-center">{{isEditForm? 'Update Franchise':'Register Franchise'}}</h3>
+
+      <mat-form-field appearance="outline">
+        <mat-label>User Name</mat-label>
+        <input matInput formControlName="userName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+
+     <mat-form-field appearance="outline" *ngIf="!isEditForm">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+     
+      <mat-form-field appearance="outline" *ngIf="!isEditForm">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+      </mat-form-field>
+
+      <!--  Hidden textbox for role -->
+        <input type="hidden" formControlName="role" value="FRANCHISE" />
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="franchiseForm.invalid">
+          {{isEditForm? 'Update':'Register'}}
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
 </div>
