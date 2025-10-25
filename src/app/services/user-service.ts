@@ -36,5 +36,18 @@ export class UserService {
   public deleteUserById(userId:number){
     return this.http.delete(`${baseUrl}/user/delete/${userId}`,{responseType:'text'})
   }
-  
+
+  public getUserWithRoles(){
+    return this.http.get(`${baseUrl}/user/userRoleList`,{responseType:'text'})
+  }
+
+  //update user role by id
+  public updateUserRoleById(userId:number,user:any){
+    return this.http.patch(`${baseUrl}/user/updateRole/${userId}`,user,{responseType:'text'})
+  }
+
+  //delete user role by id
+  public deleteUserRoleById(userId:number,roleId:number){
+  return this.http.delete(`${baseUrl}/user/deleteUserRole/${userId}/${roleId}`,{responseType:'text'})
+  }
 }

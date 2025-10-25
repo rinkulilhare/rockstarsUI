@@ -1,0 +1,100 @@
+.user-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.user-card {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.status-badge1 {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+.active {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.inactive {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+mat-paginator {
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+/* Button group inside form */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/*  Added: make table scrollable on smaller screens */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*  Added: responsive adjustments */
+@media (max-width: 768px) {
+  .user-card {
+    padding: 15px;
+    margin-top: 40px;
+  }
+
+  h3.text-center {
+    font-size: 18px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .status-badge1 {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  /*  Added: make buttons smaller */
+  button[mat-icon-button] mat-icon {
+    font-size: 18px;
+  }
+}
+
+/* Added: very small screen support */
+@media (max-width: 480px) {
+  th, td {
+    white-space: nowrap;
+  }
+}
