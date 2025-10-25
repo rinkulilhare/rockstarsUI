@@ -11,6 +11,10 @@ import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserRoleDialog } from './edit-user-role-dialog/edit-user-role-dialog';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-admin-roles',
   imports: [MatIcon,
@@ -26,7 +30,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatButtonModule,
     MatSortModule,
-     MatPaginatorModule],
+    MatPaginatorModule,
+  MatButtonModule,
+MatCheckboxModule],
   templateUrl: './admin-roles.html',
   styleUrl: './admin-roles.css'
 })
@@ -36,7 +42,8 @@ export class AdminRoles implements OnInit{
   displayedColumns: string[] = ['userId', 'userName', 'email', 'roles','actions'];
    @ViewChild(MatSort) sort!: MatSort;
    @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -54,17 +61,48 @@ export class AdminRoles implements OnInit{
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+     setTimeout(() => {
      this.sort.active = 'userId';
     this.sort.direction = 'asc';
     this.sort.sortChange.emit();
-  }
+  });
+}
 
-  onViewUser(user: any): void {
-    alert(`User: ${user.userId}\nEmail: ${user.email}\nRole: ${user.roleName || 'N/A'}`);
-  }
+  //open edit role dialog
+  onEditRole(user: any): void {
+    //alert(`User: ${user.userId}\nEmail: ${user.email}\nRole: ${user.roleName || 'N/A'}`);
+    const dialogRef=this.dialog.open(EditUserRoleDialog, {
+      width: '400px',
+      data: user
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadUsers();
+      }   
+  });
+}
+
+//delete user
   onDeleteUser(user: any): void {
-    if (confirm(`Are you sure you want to delete ${user.userId}\nRole: ${user.roleId || 'N/A'}? `)) {
-     // this.userService.deleteUserById(user.userId).subscribe(() => this.loadUsers());
+     Swal.fire({
+    title: `Are you sure you want to delete ${user.userName}?`,
+    html: `<strong>Role: ${user.roleName || 'N/A'}</strong>`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.userService.deleteUserRoleById(user.userId,user.roleId).subscribe(
+        (data) => {
+                Swal.fire('Success', data, 'success'),
+        
+        this.loadUsers();
+        },
+        (error) => 
+          Swal.fire('Error', error, 'error')
+      );
     }
-  }
+  });
+}
 }

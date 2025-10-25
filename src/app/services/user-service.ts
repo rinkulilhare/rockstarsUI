@@ -42,12 +42,12 @@ export class UserService {
   }
 
   //update user role by id
-  public updateUserRoleById(userId:number,user:any){
-    return this.http.patch(`${baseUrl}/user/updateRole/${userId}`,user,{responseType:'text'})
+  public updateUserRoleById(userId:number,roleIds:number[]){
+    return this.http.patch(`${baseUrl}/user/roleUpdate/${userId}/roleIds`,roleIds,{responseType:'text'})
   }
 
   //delete user role by id
   public deleteUserRoleById(userId:number,roleId:number){
-  return this.http.delete(`${baseUrl}/user/deleteUserRole/${userId}/${roleId}`,{responseType:'text'})
+  return this.http.delete(`${baseUrl}/user/deleteRole/${userId}/${roleId}`,{responseType:'text'})
   }
 }

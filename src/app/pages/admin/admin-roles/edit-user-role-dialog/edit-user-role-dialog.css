@@ -1,0 +1,35 @@
+.dialog-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #3f51b5; /* Material Indigo */
+}
+
+.roles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* space between checkboxes */
+  padding: 0 20px;
+}
+
+.mat-checkbox {
+  font-size: 16px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* space between buttons */
+  margin-top: 25px;
+  padding: 0 20px 20px 20px;
+}
+
+button.mat-raised-button {
+  min-width: 100px;
+  text-align: center;
+}
+
+button.mat-stroked-button {
+  min-width: 100px;
+  text-align: center;}

@@ -1,0 +1,12 @@
+<h2 class="dialog-title">Assign Roles for {{ user.userName }}</h2>
+
+<div class="roles-container">
+  <mat-checkbox [(ngModel)]="admin">ADMIN</mat-checkbox>
+  <mat-checkbox [(ngModel)]="player">PLAYER</mat-checkbox>
+  <mat-checkbox [(ngModel)]="franchise">FRANCHISE</mat-checkbox>
+</div>
+
+<div class="dialog-actions">
+  <button mat-raised-button color="primary" (click)="assignRoles()">Assign</button>
+  <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+</div>
