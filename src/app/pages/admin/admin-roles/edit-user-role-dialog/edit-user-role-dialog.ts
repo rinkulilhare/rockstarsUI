@@ -52,17 +52,19 @@ export class EditUserRoleDialog {
     this.rolesBody={role:selectedValues};
     console.log('Selected roles:', selectedValues);
    
-    alert('UserId: '+this.user.userId+
-      '\nSelected roles: ' + selectedValues.join(', ')+
-      '\nRoles Body: '+JSON.stringify(this.rolesBody)+
-      '\nRoleID: '+this.user.roleId+
-      '\nBody RoleID: '+this.rolesBody)
+    // alert('UserId: '+this.user.userId+
+    //   '\nSelected roles: ' + selectedValues.join(', ')+
+    //   '\nRoles Body: '+JSON.stringify(this.rolesBody)+
+    //   '\nRoleID: '+this.user.roleId+
+    //   '\nBody RoleID: '+this.rolesBody)
       console.log(this.rolesBody);
 
     this.userService.updateUserRoleById(this.user.userId,selectedValues).subscribe(
       (response:any)=>{
         console.log('Role updated successfully:',response);
+        
         Swal.fire('Success',response,'success');  
+        this.dialogRef.close(true);
     },
     (error:any)=>{
       console.error('Error updating role:',error);
