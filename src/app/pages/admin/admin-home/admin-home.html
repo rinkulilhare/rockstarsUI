@@ -16,7 +16,7 @@
         <mat-card-title>Events</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>{{ totalEvents || 0 }}</h2>
+        <h2>{{ eventCount || 0 }}</h2>
         <p>Total events created</p>
       </mat-card-content>
       <mat-card-actions>
@@ -31,7 +31,7 @@
         <mat-card-title>Players</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>{{ totalPlayers || 0 }}</h2>
+        <h2>{{ playerCount || 0 }}</h2>
         <p>Registered players</p>
       </mat-card-content>
       <mat-card-actions>
@@ -46,7 +46,7 @@
         <mat-card-title>Registrations</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>{{ totalRegistrations || 0 }}</h2>
+        <h2>{{ registrationCount || 0 }}</h2>
         <p>Completed registrations</p>
       </mat-card-content>
       <mat-card-actions>
@@ -61,7 +61,7 @@
         <mat-card-title>Franchises</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>05</h2>
+        <h2>{{ franchiseCount || 0 }}</h2>
         <p>Total franchises managed</p>
       </mat-card-content>
       <mat-card-actions>
@@ -77,10 +77,10 @@
       </mat-card-header>
       <mat-card-content>
         <h2>{{ userCount || 0 }}</h2>
-        <p>Total registered users</p>
+        <p>Total Active users</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-stroked-button color="primary" (click)="goToUsers()">View Users</button>
+        <button mat-stroked-button color="primary" routerLink="/admin/users">View Users</button>
       </mat-card-actions>
     </mat-card>
 
@@ -91,7 +91,7 @@
         <mat-card-title>Auctions</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>09</h2>
+        <h2>{{ auctionCount || 'Coming Soon' }}</h2>
         <p>Total auctions conducted</p>
       </mat-card-content>
       <mat-card-actions>
@@ -106,7 +106,7 @@
         <mat-card-title>Transactions</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h2>999</h2>
+        <h2>{{ transactionCount || 'Coming Soon' }}</h2>
         <p>Total transactions completed</p>
       </mat-card-content>
       <mat-card-actions>

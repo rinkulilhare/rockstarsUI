@@ -82,6 +82,11 @@ export class EventRegistrationService {
     return this.http.get(`${baseUrl}/event-reg/getAllEventProfilIds`,{ headers});
   }
 
+  //get Event-Reg count
+   public getEventRegCount(){
+    return this.http.get<number>(`${baseUrl}/event-reg/count`)
+  }
+
 
 
 

@@ -8,6 +8,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ProfileService } from '../../../services/profile-service';
 import { UserService } from '../../../services/user-service';
 import { count } from 'console';
+import { EventService } from '../../../services/event-service';
+import { EventRegistrationService } from '../../../services/event-registration-service';
 
 
 @Component({
@@ -21,13 +23,19 @@ import { count } from 'console';
 export class AdminHome implements OnInit {
 
 
-  totalEvents: number = 25;
-  totalPlayers: number = 120;
-  totalRegistrations: number = 85;
+  //totalEvents: number = 25;
+ // totalPlayers: number = 120;
+  //totalRegistrations: number = 85;
   
 
   user: any|null=null;
   userCount:any|null=null;
+  eventCount:any|null=null;
+  registrationCount:any|null=null;
+  playerCount:any|null=null; 
+  franchiseCount:any|null=null;
+  auctionCount:any|null=null;
+  transactionCount:any|null=null  
   greetingMessage: string = '';
   userName: string='';
   profile:any|null=null;
@@ -36,8 +44,12 @@ export class AdminHome implements OnInit {
   dashboardCards: any[] = [];
 
   constructor(private login:LoginService, @Inject(PLATFORM_ID) private platformId: Object,
-              private profileService:ProfileService, private router: Router,
-              private userService:UserService){
+              private profileService:ProfileService,
+              private router: Router,
+              private userService:UserService,
+              private eventService:EventService,
+              private eventRegistrationService:EventRegistrationService
+              ) {
 
       }//constructor closed
 
@@ -92,7 +104,7 @@ export class AdminHome implements OnInit {
     }
   );
 }
-
+// User Count API
   getCountUsers(){
     this.userService.getUserCount().subscribe(
       count=>{
@@ -102,6 +114,45 @@ export class AdminHome implements OnInit {
     );
   }
 
+  // Get Event Count API
+  getCountEvents(){
+    this.eventService.getEventCount().subscribe(
+      count=>{
+        this.eventCount=count;
+        console.log("Event Count API: ",this.eventCount);
+      }
+    );
+  }
+
+  // Get Registration Count API
+  getCountRegistrations(){
+    this.eventRegistrationService.getEventRegCount().subscribe(
+      count=>{
+        this.registrationCount=count;
+        console.log("Registration Count API: ",this.registrationCount);
+      }
+    );
+  }  
+
+  // Get Player Count API
+  getCountPlayers(){
+    this.profileService.getPlayerCount().subscribe(
+      count=>{
+        this.playerCount=count;
+        console.log("Player Count API: ",this.playerCount);
+      }
+    );
+  }  
+
+  // Get Franchise Count API
+  getCountFranchise(){
+    this.profileService.getFranchiseCount().subscribe(
+      count=>{
+        this.franchiseCount=count;
+        console.log("Player Count API: ",this.franchiseCount);
+      }
+    );
+  }  
 
 
 
@@ -116,6 +167,10 @@ export class AdminHome implements OnInit {
    // this.userCount=Number(this.userService.getUserCount());
    // this.getUserCount();
     this.getCountUsers();
+    this.getCountEvents();
+    this.getCountRegistrations();
+    this.getCountPlayers();
+    this.getCountFranchise(); 
     console.log("Get UserName From Local: ",localStorage.getItem('userName'));
    
    
@@ -133,7 +188,7 @@ export class AdminHome implements OnInit {
   }
 
   goToPlayers() {
-    this.router.navigate(['/franchise/players']);
+    this.router.navigate(['/admin/players']);
   }
 
   goToRegistrations() {

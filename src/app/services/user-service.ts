@@ -29,6 +29,10 @@ export class UserService {
     return this.http.get(`${baseUrl}/user/listFranchise`,{responseType:'text'})
   }
 
+  public getUsersHavingPlayer(){
+    return this.http.get(`${baseUrl}/user/listPlayer`,{responseType:'text'})
+  }
+
   public updateUserEmailById(user:any, userId:number){
     return this.http.patch(`${baseUrl}/user/updateMail/${userId}`,user,{responseType:'text'})
   }

@@ -51,4 +51,9 @@ export class EventService {
     return this.http.patch(`${baseUrl}/event/update/${eventId}`,eventDTO,{responseType:'text'})
   }
 
+  //get Event count
+   public getEventCount(){
+    return this.http.get<number>(`${baseUrl}/event/count`)
+  }
+
 }

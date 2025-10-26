@@ -81,6 +81,15 @@ export class ProfileService {
   return this.http.patch(`${baseUrl}/user/updateMail/${userId}`,user, { headers, responseType: 'text' as 'json' });
   }
 
+  //get Player count
+   public getPlayerCount(){
+    return this.http.get<number>(`${baseUrl}/player/count`)
+  }
+
+  //get Franchise count
+   public getFranchiseCount(){
+    return this.http.get<number>(`${baseUrl}/franchise/count`)
+  }
 
 
 }
