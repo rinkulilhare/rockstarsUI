@@ -89,16 +89,15 @@ showEventForm = false;
       }))
       .sort((a:any, b:any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
       
-        // Animate registration count (example: use e.event_status or another field if needed)
-      this.events.forEach(ev => {
-        const target = this.events.length // example number or fetch actual registrations
-        let i = 0;
-        const interval = setInterval(() => {
-          if (i <= target) ev.registrationCount = i++;
-          else clearInterval(interval);
-        }, 20);
+      //There you can load registration counts if needed
+      this.events.forEach(event => {
+        this.eventRegistrationService.getEventRegCountByEventId(event.event_id)
+        .subscribe(count => {
+          event.registrationCount = count;
+        });
       });
-      
+
+
       
       // Trigger Another Check after async data Update
       this.cdRef.detectChanges();

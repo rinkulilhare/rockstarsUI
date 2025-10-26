@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 
 import Swal from 'sweetalert2';
+import { EventRegistrationService } from '../../../services/event-registration-service';
 
 interface Event {
   eventName: string;
@@ -49,10 +50,11 @@ export class AdminEvents implements OnInit{
   eventForm: FormGroup;
   events: any[] = []; // Events From Table Fetch Here
 
-  displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status', 'actions'];
+  displayedColumns: string[] = ['event_name', 'start_date', 'end_date', 'status','Hits', 'actions'];
 
   constructor(private fb: FormBuilder,
-              private eventService:EventService, 
+              private eventService:EventService,
+              private eventRegistrationService:EventRegistrationService,   
               private router:Router,
               private cdRef:ChangeDetectorRef) {
     this.eventForm = this.fb.group({
@@ -77,6 +79,15 @@ export class AdminEvents implements OnInit{
       }))
       .sort((a:any, b:any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
       // Trigger Another Check after async data Update
+      
+      // Load registration counts for each eventId
+      this.events.forEach(event=>{
+        this.eventRegistrationService.getEventRegCountByEventId(event.event_id)
+        .subscribe(counts=>{
+          event.registrationCount=counts;
+        }); 
+      });
+
       this.cdRef.detectChanges();
     },
       error: (err:any) => console.error('Error fetching Events:', err)

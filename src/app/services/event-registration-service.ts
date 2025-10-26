@@ -87,6 +87,11 @@ export class EventRegistrationService {
     return this.http.get<number>(`${baseUrl}/event-reg/count`)
   }
 
+  //get Event-Reg count by EventID
+   public getEventRegCountByEventId(eventId:number){
+    return this.http.get<number>(`${baseUrl}/event-reg/countReg/${eventId}`)
+  }
+
 
 
 

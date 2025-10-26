@@ -34,6 +34,22 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="Hits">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+             Registrations
+           </th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
+          <span 
+            style="
+                 font-weight: 600; 
+                 font-size: 1.2rem; 
+                color: #d87093; /* palevioletred */
+              ">
+              {{ element.registrationCount || 0}}
+           </span>
+            </td>
+      </ng-container>
+
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element">
