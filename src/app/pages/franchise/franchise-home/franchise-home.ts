@@ -26,15 +26,16 @@ export class FranchiseHome {
 setGreeting(): void {
     const currentHour = new Date().getHours();
 
-    if (currentHour < 12) {
+    if (currentHour >=4 && currentHour < 12) {
       this.greetingMessage = 'Good Morning';
-    } else if (currentHour < 17) {
+    } else if (currentHour >=12 && currentHour < 16) {
       this.greetingMessage = 'Good Afternoon';
-    } else if (currentHour < 20) {
+    } else if (currentHour >=16 && currentHour < 21) {
       this.greetingMessage = 'Good Evening';
     } else {
-      this.greetingMessage = 'Good Night';
+      this.greetingMessage = 'Welcome Back';
     }
+  
   }
 
 
